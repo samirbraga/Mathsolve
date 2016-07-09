@@ -1,0 +1,625 @@
+
+/*Reset all*/
+ * {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family: 'Century Gothic', sans-serif;
+}
+
+
+body {
+  font-size: 0;
+  background: url('../Images/bg-body.png') #506967 repeat fixed;
+  background-size: 300px 300px;
+  height: auto;
+  }
+button, input[type="button"]{
+  cursor: pointer;
+  outline: none;
+}
+h1{
+  position: relative;
+  top: 10px;
+  text-align: center;
+  color: rgba(146, 211, 204, 1);
+  margin: 15px auto;
+  font-size: 30pt;
+  font-weight: normal;
+  padding: 5px 0;
+}
+a{
+  text-decoration: none;
+  color: #3c948b;
+}
+a:hover{
+  text-decoration: underline;
+  color: #008c83;
+}
+li{
+  list-style: none;
+}
+.topBar{
+  width: 100%;
+  height: 100px;
+  background: url('../Images/border-bottom-bg.png') #fff repeat-x;
+  background-size: auto 8px;
+  background-position: 0 bottom; 
+  -webkit-box-shadow: 2px 0 2px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 0 2px 1px rgba(0,0,0,0.2);
+  box-shadow: 5px -2px 5px 2px rgba(0,0,0,0.5);
+  z-index: 100;
+  -webkit-animation: example 8s linear infinite; 
+  -moz-animation: example 8s linear infinite; 
+  animation: example 8s linear infinite; 
+}
+@-webkit-keyframes example{
+  from{
+    background-position-x: 0; 
+  }
+  to{
+    background-position-x: 689px; 
+  }
+}
+@keyframes example{
+  from{
+    background-position-x: 0; 
+  }
+  to{
+    background-position-x: 689px; 
+  }
+}
+.topBar .content{
+  width: 80%;
+  max-width: 1200px;
+  height: calc(100% - 8px);
+  background: #fff;
+  background-size: auto 8px;
+  margin: auto;
+  vertical-align: middle;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.topBar .content .logo{
+  width: 60px;
+  height: 60px;
+  background: url('../Images/logo.png') no-repeat;
+  background-position: center; 
+  background-size: cover;
+}
+.topBar .content .menu ul li{
+  display: inline-block;
+  list-style: none;
+  font-size: 12pt;
+  margin: 0 10px;
+  padding: 0 10px;
+  cursor: pointer;
+  height: 50px;
+  line-height: 50px;
+  -webkit-transition: border 0.1s ease;
+  -moz-transition: border 0.1s ease;
+  transition: border 0.1s ease;
+  vertical-align: middle;
+}
+.topBar .content .menu ul li:nth-child(1):hover{
+  border-bottom: solid 3px #008c83;
+}
+.topBar .content .menu ul li:nth-child(2):hover{
+  border-bottom: solid 3px #00746a;
+}
+.topBar .content .menu ul li:nth-child(3):hover{
+  border-bottom: solid 3px #005f57;
+}
+.topBar .content .menu ul li:nth-child(4):hover{
+  border-bottom: solid 3px #00413a;
+}
+.adsense{
+  width: 80%;
+  max-width: 1200px;
+  height: 130px;
+  background: #999;
+  margin: 20px auto;
+  text-align: center;
+  vertical-align: middle;
+  font-family: 'Trebuchet MS', sans-serif;
+  color: #f1f2f3;
+  font-size: 1.5rem;
+  line-height: 100%;
+}
+.pageContent{
+  z-index: 80;
+  width: 80%;
+  max-width: 1200px;
+  margin: 20px auto 20px auto;
+  height: auto;
+  min-height: calc(100vh - 100px);
+  background: #fff;
+  padding-bottom: 20px;
+  -webkit-box-shadow: 0 0 2px 1px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 0 2px 1px rgba(0,0,0,0.3);
+  box-shadow: 0 -0 5px 2px rgba(0,0,0,0.3);
+}
+.pageContent .description{
+  width: 90%;
+  font-size: 12pt;
+  margin: 40px 20px 10px 20px;
+  border-left: 2px solid rgb(0, 95, 87);
+  padding-left: 5px;
+}
+.pageContent 
+.adsense{
+  width: 728px;
+  max-width: 1200px;
+  height: 90px;
+  display: inline-block;
+  float: right;
+  margin: 20px;
+}
+.title{
+  width: auto;
+  display: inline-block;
+}
+.title h1{
+  font-size: 29pt;
+  padding-left: 20px; 
+  font-weight: normal;
+  text-align: left;
+  top: 0;
+  width: auto;
+  display: block;
+  color: #000;
+}
+.title h1 .title-line1{
+  width: calc(100% + 45px);
+  margin-left: -30px;
+  height: 4px;
+  position: relative;
+  background: #3c948b;
+  z-index: 10;
+}
+.title h1 .title-line2{
+  width: calc(100% + 20px);
+  margin-left: -30px;
+  height: 6px;
+  background: #022d28;
+  position: relative;
+  z-index: 12;
+}
+.title h1 .title-line2:before{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 0;
+  height: 0;
+  background: transparent;
+  border-top: 10px solid #022d28;
+  border-bottom: 10px solid transparent; 
+  border-left: 10px solid transparent;
+  z-index: 4;
+}
+.matrices{
+  width: 100%;
+  position: relative;
+  margin: auto;
+  height: auto;
+  min-height: 300px;
+  padding: 30px;
+  text-align: center;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.matrices-align{
+  display: inline-block;
+  width: auto;
+  height: auto;
+  position: relative;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.matrix {
+  padding: 5px;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  background: transparent;
+  position: relative;
+}
+.row {
+  display: -webkit-flex;
+  display: flex;
+  align-items: left;
+  justify-content: left;
+}
+/*pseudo-brackets in matrices sides*/
+.brackets-before{
+  display: inline-block;
+  width: 5px;
+  height: 100%;
+  background: #255b55;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.brackets-before:before{
+  content: '';
+  height: 5px;
+  width: 20px;
+  background: #255b55;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.brackets-before:after{
+  content: '';
+  height: 5px;
+  width: 20px;
+  background: #255b55;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.brackets-after{
+  display: inline-block;
+  width: 5px;
+  height: 100%;
+  background: #255b55;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.brackets-after:before{
+  content: '';
+  height: 5px;
+  width: 20px;
+  background: #255b55;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.brackets-after:after{
+  content: '';
+  height: 5px;
+  width: 20px;
+  background: #255b55;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+/*operator (sum, minus, divide, multiply) */
+.operator{
+  width: auto;
+  height: 50px;
+  color: #3c948b;
+  font-size: 20pt;
+  border: 5px solid #3c948b;
+  background: transparent;
+  margin: 0 30px;
+  padding: 0 10px;
+  display: inline-block;
+}
+/*div of Button calculate*/
+.solve{
+  position: relative;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  vertical-align: middle;
+  margin: auto;
+  background: url('../Images/border-bottom-bg.png') rgb(0, 95, 87) repeat-x;
+  background-size: auto 8px;
+  background-position: left bottom; 
+}
+/*button calculate*/
+.solve input{
+  width: 100%;
+  height: calc(100% - 8px);
+  color: #FFF;
+  font-size: 20pt;
+  background: transparent;
+  cursor: pointer;
+}
+.solve input:hover{
+  background: rgb(0, 118, 108);
+  color: #002825;
+}
+/*inputs text in matrix (cells)*/
+.cell {
+  margin: 0;
+  max-width: 250px;
+  max-height: 250px;
+  min-width: 30px;
+  min-height: 30px;
+  width: 300px;
+  height: 300px;
+  text-align: center;
+  vertical-align: middle;
+  border: 0;
+  outline: none;
+  font-size: 12pt;
+  font-weight: bold;
+  background:transparent; 
+}
+/* class added on hover in cell to show its row an its column */
+.showed {
+  border: solid 1px #3c948b;
+}
+.selected {
+  border: solid 1px red;
+}
+.cell:focus {
+  border: solid 1px #333;
+}
+.result {
+  position: relative;
+  height: auto;
+  width: 100%;
+  font-size: 12pt;
+  padding: 5px 10px;
+  margin: 0 auto 40px auto;
+  top: 30px;
+  bottom: 70px;
+  display: none;
+  text-align: center;
+}
+.result .resultMatrix{
+  position: relative;
+  height: auto;
+  width: auto;
+}
+.result span {
+  font-size: 12pt;
+  display: inline-block;
+  text-align: center;
+  min-width: 80px;
+  width: auto;
+  height: 80px;
+  line-height: 80px;
+  margin: 2px;
+  font-weight: bold;
+  color: #255b55;
+}
+hr{
+  display: none;
+  height: 2px;
+  background: #255b55;
+  width: 90%;
+  margin: 10px auto;
+}
+.result .brackets-before, .result .brackets-before:before, .result .brackets-before:after, .result .brackets-after, .result .brackets-after:before, .result .brackets-after:after{
+  background: #255b55;
+}
+
+.footer{
+  height: 200px;
+  width: 100%;
+  background: #0c433d;
+  background: url('../Images/border-bottom-bg.png') #0c433d repeat-x;
+  background-size: auto 8px;
+  background-position: left top; 
+  -webkit-animation: example 8s linear infinite; 
+  -moz-animation: example 8s linear infinite; 
+  animation: example 8s linear infinite; 
+}
+
+.welcome{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.welcome .welcome-content{
+  width: 70%;
+  height: auto;
+  min-height: 270px;
+  background: url('../Images/border-bottom-bg.png') #fff repeat-x;
+  background-size: auto 8px;
+  background-position: 0 bottom; 
+}
+.welcome .welcome-content .title{
+  top: 0;
+}
+.welcome .welcome-content .welcome-options{
+  margin: 10px;
+  text-align: center;
+}
+.welcome .welcome-content button{
+  width: 40%;
+  height: 100px;
+  border: 3px solid #3c948b;
+  color: #3c948b;
+  margin: 20px;
+  font-size: 15pt;
+  font-weight: bold;
+  background: transparent;
+}
+.welcome .welcome-content hr{
+  display: block;
+}
+.welcome .welcome-content h2{
+  font-size: 15pt;
+  margin: 10px 20px 20px 20px;
+  text-align: center;
+}
+.welcome .welcome-content p{
+  font-size: 13pt;
+  margin: 20px;
+  margin-bottom: 28px;
+}
+.welcome .welcome-content .tutorial{
+  background: #3c948b;
+  color: #fff;
+}
+
+.tutorialBox{
+  width: 300px;
+  height: 295px;
+  background: #fff;
+  position: absolute;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
+  box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
+}
+.tutorialBox .content{
+  position: absolute;
+  width: 300px;
+  height: 295px;
+  background: #fff;
+  padding: 20px 10px;
+}
+.tutorialBox .close{
+  color: #666;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  background: transparent;
+  padding: 3px 5px;
+}
+.tutorialBox .title{
+  position: relative;
+  font-size: 15pt;
+  top: -25px;
+  cursor: move;
+}
+.tutorialBox .title h1{
+  padding-left: 10px;
+  font-size: 16pt;
+}
+.tutorialBox .title h1 .title-line1{
+  margin-left: -40px;
+}
+.tutorialBox .title h1 .title-line2{
+  margin-left: -40px;
+}
+.tutorialBox .tutorial-instruction{
+  top: -30px;
+  font-size: 11.5pt;
+  position: relative;
+  text-align: left;
+  display: block;
+  height: 95px;
+  width: auto;
+  margin: 0 10px;
+}
+.tutorialBox .step{
+  margin: 10px 10px;
+  width: 40%;
+  height: 40px;
+  border: 3px solid #255b55;
+  background: transparent;
+}
+
+.tutorialBox .stepsCount{
+  margin: 5px auto 0 auto;
+  padding: 5px 0 0 0;
+  width: 95%;
+  height: auto;
+  color: #fff;
+  border-top: 1px solid #ccc;
+}
+.tutorialBox .steps{
+  margin: 2px;
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+  text-align: center;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  background: #3c948b;
+  font-size: 7.5pt;
+  color: #fff;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+.tutorialBox .tutorial-next{
+  background: #255b55;
+  color: #fff;
+}
+.alert{
+  z-index: 0;
+  width: auto;
+  max-width: 70%;
+  min-width: 400px;
+  background: rgba(255, 255, 255, 0.9);
+  height: auto;
+  color: #rgba(0, 34, 30, 0.9);
+  text-align: center;
+  padding: 10px;
+  font-size: 12pt;
+  position: fixed;
+  display: inline-block;
+  top: -40px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  transform: translateX(-50%);
+  -webkit-box-shadow: 0 0 2px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 0 2px 1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 2px 1px rgba(0,0,0,0.2);
+  background: url('../Images/border-bottom-bg.png') #fff repeat-x;
+  background-size: auto 4px;
+  background-position: 0 bottom; 
+}
+
+/* .container {
+  background: transparent;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo{
+  background: transparent;
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  border: 2px solid #3c948b;
+  animation: load 2s infinite;
+  position: absolute;
+}
+.logo2{
+  animation: load 2s infinite;
+  animation-delay: 0.05s;
+}
+.logo3{
+  animation: load 2s infinite;
+  animation-delay: 0.1s;
+}
+.logo4{
+  animation: load 2s infinite;
+  animation-delay: 0.15s;
+}
+.logo5{
+  animation: load 2s infinite;
+  animation-delay: 0.2s;
+}
+.logo6{
+  animation: load 2s infinite;
+  animation-delay: 0.25s;
+}
+.logo6{
+  animation: load 2s infinite;
+  animation-delay: 0.3s;
+}
+@keyframes load{
+  50%{  width: 0px;}
+} */

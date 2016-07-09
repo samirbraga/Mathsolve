@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>   <script type="text/javascript" src="https://b024d6cf0f747a1b5c17f537683bfe78d164fb75.googledrive.com/host/0B-tKb3VNVqvTZmNZUkk2Z3hyb3M/bubble.js"></script>
+  <meta name="keywords" content="matemática, online, math, matriz, matrix, mathematic, resolver, calculadora, calc, determinante, traço, matriz inversa, matriz transposta">   
+  <meta name="description" content="Resolva matrizes online com o MathSolve, com um sistema simples, de fácil manusemaneto, um tutoria e com demonstração de regras!">
+  <meta name="abstract" content="Sistema de solução de matriz online, para facilitar sua vida.">
+  <meta name="author" content="Samir Braga">
+  <script src="libraries/jquery.min.js"></script>
+  <script src="libraries/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="scripts/script.js"></script>
+  <script type="text/javascript" src="scripts/script_tutorial.js"></script>
+  <title>Matriz - MathSolve</title>
+  <link rel="stylesheet" type="text/css" href="../styles/style.css">
+</head>
+<body>
+  <div class="welcome" >
+    <div class="welcome-content border-bottom-bg">
+      <div class="title">
+        <h1><span>Seja bem vindo!</span> <br>  
+          <div class="title-line1"></div>
+          <div class="title-line2"></div>
+        </h1>
+      </div>
+      <h2>É a primeira vez que nos visita?</h2>
+      <div class="welcome-options">
+        <button class="tutorial">Ver um rápido tutorial</button>
+        <button class="skip">Já estou habituado</button>
+      </div>
+      <hr>
+      <p>Está perdido? Veja um <a href='#'>mapa completo das nossas ferramentas</a> e sinta-se a vontade para explorá-las.</p>
+    </div>
+  </div>
+  <div class="topBar">
+    <div class="content">
+      <div class="logo"></div>
+      <nav class="menu">
+        <ul>
+          <li>Matérias</li>
+          <li>Tutoriais</li>
+          <li>Redes Sociais</li>
+          <li>Sobre</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="pageContent">
+    <div class="title">
+      <h1><span>Matriz</span> <br>  
+        <div class="title-line1"></div>
+        <div class="title-line2"></div>
+      </h1>
+    </div>
+    <div class="adsense"></div>
+    <br>
+    <div class="description">
+      <ul>
+        <li><b>Execute operações com matrizes:</b> Some, subtraia, multiplique e faça matriz inversa</li>
+        <li><b>Calcule</b> determinante e traço</li>
+        <li><b>Entenda</b> matriz nula, transposta, indentidade e muito mais!</li>
+        <li>Ainda dispomos de um <b><a href="javascript:tutorial()">TUTORIAL</a></b> para lhe auxiliar</li>
+        <li>E o melhor, tudo isso de modo <b>simples</b>, <b>rápido</b> e <b>de graça</b></li>
+      </ul>
+    </div>
+    <div class="matrices">
+      <div class="matrices-align">
+        <div class="matrix">
+          <div class="row row1">
+            <input type="text" class="cell">
+          </div>
+        </div>
+        <select class="operator">
+          <option value="sum">+</option>
+          <option value="minus">-</option>
+          <option value="multiply">x</option>
+        </select>
+        <div class="matrix">
+          <div class="row row1">
+            <input type="text" class="cell">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="solve" >
+      <input type="button" value="CALCULAR">
+    </div>
+    <div class="result">
+      <div class="equation"></div>
+      <div class="resultMatrix"></div>
+    </div>
+    <hr style="height: 2px; background: #3c948b; width: 90%;  margin: 50px auto 0 auto">
+  </div>
+  <div class="adsense"></div>
+  <footer class="footer">
+    <br>
+    <br>
+    <div class="adsense"></div>
+  </footer>
+</body>
+</html>
