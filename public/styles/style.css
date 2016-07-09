@@ -49,11 +49,11 @@ li{
   -webkit-box-shadow: 2px 0 2px 1px rgba(0,0,0,0.2);
   -moz-box-shadow: 0 0 2px 1px rgba(0,0,0,0.2);
   box-shadow: 5px -2px 5px 2px rgba(0,0,0,0.5);
-  z-index: 100;
+  z-index: 100;/*
   -webkit-animation: example 8s linear infinite; 
   -moz-animation: example 8s linear infinite; 
-  animation: example 8s linear infinite; 
-}
+  animation: example 8s linear infinite; */
+}/*
 @-webkit-keyframes example{
   from{
     background-position-x: 0; 
@@ -69,7 +69,7 @@ li{
   to{
     background-position-x: 689px; 
   }
-}
+}*/
 .topBar .content{
   width: 80%;
   max-width: 1200px;
@@ -404,10 +404,10 @@ hr{
   background: #0c433d;
   background: url('../Images/border-bottom-bg.png') #0c433d repeat-x;
   background-size: auto 8px;
-  background-position: left top; 
+  background-position: left top; /*
   -webkit-animation: example 8s linear infinite; 
   -moz-animation: example 8s linear infinite; 
-  animation: example 8s linear infinite; 
+  animation: example 8s linear infinite; */
 }
 
 .welcome{
