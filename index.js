@@ -12,8 +12,8 @@ app.set('view engine', 'html');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-app.listen(3000, function () {
+var port = Number( process.env.PORT || 3000 )
+app.listen(port, function () {
   console.log('Mathsolver running in localhost:3000');
 });
 app.get('/matriz', function (req, res) {
