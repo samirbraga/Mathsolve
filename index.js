@@ -22,8 +22,8 @@ app.listen(port, function () {
 var math = require('./solutions/matrix/allsolutions.js');
 // matrix fill page content
 
-app.get('/:url', function (req, res) {
-	if(req.params.url == "matriz" || req.params.url == "")	res.render('layout.html');
+app.get('/', function (req, res) {
+	res.render('layout.html');
 });
 
 matrixA = [];

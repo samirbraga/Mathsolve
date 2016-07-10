@@ -7,7 +7,7 @@ app.controller("mathsolveCtrl", function ($scope, $http) {
 	        {text: '<b>Calcule</b> determinante e traço'},
 	        {text: '<b>Entenda</b> matriz nula, transposta, indentidade e muito mais!'},
 	        {text: 'Ainda dispomos de um <b><a href="javascript:tutorial()">TUTORIAL</a></b> para lhe auxiliar'},
-	        {text: 'E o melhor, tudo isso de modo <b>simples</b>, <b>rápido</b> e <b>de graça</b>'}
+	        {text: 'E o melhor, tudo isso de modo <b>simples</b>, <b>rápido</b> e <b>gratuito</b>'}
 		]
    	}
 })
