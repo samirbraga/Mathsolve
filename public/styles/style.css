@@ -418,6 +418,7 @@ hr{
   top: 0;
   left: 0;
   z-index: 100;
+  visibility: hidden;
   display: -webkit-flex;
   display: flex;
   align-items: center;

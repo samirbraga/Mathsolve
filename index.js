@@ -4,6 +4,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
+var fs = require('fs');
 
 // configure
 app.set('views', __dirname + '/views');
@@ -20,21 +21,9 @@ app.listen(port, function () {
 // include math matrix operators
 var math = require('./solutions/matrix/allsolutions.js');
 // matrix fill page content
-var matrixFill = {
-	title: "Matriz",
-	instructions: [
-		{text: '<b>Execute operações com matrizes:</b> Some, subtraia, multiplique e faça matriz inversa'},
-        {text: '<b>Calcule</b> determinante e traço'},
-        {text: '<b>Entenda</b> matriz nula, transposta, indentidade e muito mais!'},
-        {text: 'Ainda dispomos de um <b><a href="javascript:tutorial()">TUTORIAL</a></b> para lhe auxiliar'},
-        {text: 'E o melhor, tudo isso de modo <b>simples</b>, <b>rápido</b> e <b>de graça</b>'}
-	]
-}
-app.get('/matriz', function (req, res) {
-  res.render('layout.html');
-});
-app.get('/matriz/info', function (req, res) {
-  res.send(matrixFill);
+
+app.get('/:url', function (req, res) {
+	if(req.params.url == "matriz" || req.params.url == "")	res.render('layout.html');
 });
 
 matrixA = [];

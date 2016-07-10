@@ -18,7 +18,15 @@ function clearSelection() {
         window.getSelection().removeAllRanges();
     }
 }
-
+  function prepareData(obj) {
+        if (!obj) obj = {};
+        let data = Object.keys(obj).map(key => {
+            let v = obj[key];
+            let val = v instanceof Date ? v.getTime() / 1000 : v;
+            return [key, val].join('=');
+        }).join('&');
+        return encodeURI(data);
+    }
 // Info about anything that ti will be showed in top of page
 var alertInfo = function(text){
   $('.alert').fadeOut(200, function(){
@@ -499,17 +507,16 @@ $('.solve').click(function() {
       if ($('.operator').val() == "multiply" ) {
         var matrixA = matrix.matrix0;
         var matrixB = matrix.matrix1;
-        $.post('/matriz',
-        {
-          matrixA: JSON.stringify(matrixA),
-          matrixB: JSON.stringify(matrixB)
+        $.post('/matriz', {
+          'matrixA': JSON.stringify(matrixA),
+          'matrixB': JSON.stringify(matrixB)
         },
-        function(data){
-          console.log('done')
-        })
-        $.get('/matriz/'+$('.operator').val(),
-        function(data){
-        })
+        function (data){
+          $.get('/matriz/'+$('.operator').val(),
+          function(data){
+            renderMatrix(JSON.parse(data));
+          })
+        });
       }else{
         alertInfo('Na <i>Soma</i> e na <i>Subtração</i> as matrizes devem possuir o <b>mesmo número de linhas e colunas<b>!');
       }
@@ -533,12 +540,21 @@ $('.solve').click(function() {
     }
   }
 })
-
+if(localStorage.getItem("visitCount")){
+  if(localStorage.getItem("visitCount") >= 1){
+    $('.welcome').css('visibility', 'hidden');
+  }else{
+    localStorage.setItem("visitCount", 2);
+    $('.welcome').css('visibility', 'visible');
+  }
+}else{
+  $('.welcome').css('visibility', 'visible');
+  localStorage.setItem("visitCount", 1);
+}
 $('.welcome .welcome-content .skip').click(function(){
   $('.welcome').fadeOut();
 })
 $('.welcome .welcome-content .tutorial').click(function(){
-
   $('.welcome').fadeOut(300, tutorial);
 })
 
