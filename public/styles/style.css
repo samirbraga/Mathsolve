@@ -129,6 +129,7 @@ li{
   color: #f1f2f3;
   font-size: 1.5rem;
   line-height: 100%;
+  visibility: hidden;
 }
 .pageContent{
   z-index: 80;

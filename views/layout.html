@@ -10,13 +10,15 @@
   <meta name="author" content="Samir Braga">
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow">
-  <script src="libraries/jquery.min.js"></script>
-  <script src="libraries/jquery-ui.min.js"></script>
-  <script defer src="libraries/angular.min.js"></script>
-  <script defer src="scripts/app.js"></script>
-  <script defer src="scripts/directives/replaceInclude.js"></script>
-  <script defer src="scripts/filters/bind-html.js"></script>
-  <script defer src="scripts/controllers/matrixCtrl.js"></script>
+  <script type="text/javascript" src="libraries/jquery.min.js"></script>
+  <script type="text/javascript" src="libraries/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="libraries/angular.min.js"></script>
+  <script type="text/javascript" src="scripts/app.js"></script>
+  <script type="text/javascript" src="scripts/directives/replaceInclude.js"></script>
+  <script type="text/javascript" src="scripts/filters/bind-html.js"></script>
+  <script type="text/javascript" src="scripts/controllers/matrixCtrl.js"></script>
+  <script type="text/javascript" src="scripts/inner-scripts/matrix/script_tutorial.js"></script>
+  <script type="text/javascript" src="scripts/inner-scripts/matrix/script.js"></script>
   <title>Matriz - MathSolve</title>
   <link rel="stylesheet" type="text/css" href="../styles/style.css">
 </head>
@@ -66,8 +68,8 @@
         </li>
       </ul>
     </div>
-    <div ng-include="'views/includes-calc/matrix.html'" include-replace></div>
-    <div class="solve" >
+    <div ng-include="fill.includeSrc" onload="'fill.loadScriptToDOM()'" include-replace></div>
+    <div class="solve">
       <input type="button" value="CALCULAR">
     </div>
     <div class="result">
@@ -82,6 +84,5 @@
     <br>
     <div class="adsense"></div>
   </footer>
-
 </body>
 </html>
