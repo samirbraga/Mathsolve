@@ -43,6 +43,10 @@ function test_keys(){
     }).join('&');
     return encodeURI(data);
   }*/
+
+  var matrixElA = $('.matrix:eq(0)');
+  var matrixElB = $('.matrix:eq(1)');
+  
   // Info about anything that ti will be showed in top of page
   var alertInfo = function(text){
     $('.alert').fadeOut(200, function(){
@@ -62,6 +66,92 @@ function test_keys(){
       }, 5000)
     }, 300)
   }
+
+  var matrix = {
+    'matrix0': [],
+    'matrix1': []
+  };
+
+  var loadMatrices = function(){
+    matrix.matrix0 = [];
+    matrix.matrix1 = [];
+    matrixElA.children('.row').each(function(ind) {
+      matrix.matrix0[ind] = [];
+      $(this).children('.cell').each(function(index) {
+        matrix.matrix0[ind][index] = this.value.replace(/ /g, '');
+      });
+    });
+    matrixElB.children('.row').each(function(ind) {
+      matrix.matrix1[ind] = [];
+      $(this).children('.cell').each(function(index) {
+        matrix.matrix1[ind][index] = this.value.replace(/ /g, '');
+      });
+    });
+  } 
+  var resizeMatrices = function(){
+    var arr0 = []; //populate the length of children into this array.
+    var arr1 = []; //populate the length of children into this array.
+    matrixElA.children('.row').map(function (i) {
+        arr0[i] = $(this).children().length;
+    });
+    matrixElB.children('.row').map(function (i) {
+        arr1[i] = $(this).children().length;
+    });
+    var maxValue0 = Math.max.apply(Math, arr0);
+    var maxValue1 = Math.max.apply(Math, arr1);
+    if(matrixElA.find('.row').length > maxValue0){
+      matrixElA.find('.cell').css({
+        'width': (250/matrixElA.children('.row').length),
+        'height': (250/matrixElA.children('.row').length)
+      })
+    }else{
+      matrixElA.find('.cell').css({
+        'width': (250/maxValue0),
+        'height': (250/maxValue0)
+      })
+    }
+    if(matrixElB.find('.row').length > maxValue1){
+      matrixElB.find('.cell').css({
+        'width': (250/matrixElB.children('.row').length),
+        'height': (250/matrixElB.children('.row').length)
+      })
+    }else{
+      matrixElB.find('.cell').css({
+        'width': (250/maxValue1),
+        'height': (250/maxValue1)
+      })
+    }
+  }
+  var invertMatricesOrder = function(){
+    loadMatrices();
+    var matrixA = [];
+    var matrixB = [];
+    matrixA = matrix.matrix1;
+    matrixB = matrix.matrix0;
+    matrixElA.html('');
+    matrixA.forEach(function(element, index){
+      var _row = $('<div class="row row'+index+'"></div>');
+      _row = _row.appendTo(matrixElA);
+      matrixA[index].forEach(function(el, i){
+        var _cell = $('<input type="text" class="cell" >');
+        _cell.appendTo(_row)
+        _cell.val(matrixA[index][i]);
+      });
+    })
+    matrixElB.html('');
+    matrixB.forEach(function(element, index){
+      var _row = $('<div class="row row'+index+'"></div>');
+      _row = _row.appendTo(matrixElB);
+      matrixB[index].forEach(function(el, i){
+        var _cell = $('<input type="text" class="cell" >');
+        _cell = _cell.appendTo(_row)
+        _cell.val(matrixB[index][i]);
+      });
+    })
+    insertBrackets();
+    resizeMatrices();
+  }
+  $('.invertMatricesOrder').click(invertMatricesOrder);
 
   var deleteCount = 0; // count two keydowns to delete a input
 
@@ -161,11 +251,6 @@ function test_keys(){
     }
   })
 
-
-  var matrix = {
-    'matrix0': [],
-    'matrix1': []
-  };
   var copied = [];
 
 
@@ -541,7 +626,7 @@ function test_keys(){
       alertInfo('Preencha todas as células corretamente!');
     } else {
       loadMatrices();
-      if ($('.matrix:eq(0)').find('.cell').length != $('.matrix:eq(1)').find('.cell').length || $('.matrix:eq(0)').children('.row').length !=$('.matrix:eq(1)').children('.row').length) {
+      if (matrixElA.find('.cell').length != matrixElB.find('.cell').length || matrixElA.children('.row').length !=matrixElB.children('.row').length) {
         if ($('.operator').val() == "multiply" ) {
           var matrixA = matrix.matrix0;
           var matrixB = matrix.matrix1;
@@ -595,11 +680,13 @@ function test_keys(){
   $('.welcome .welcome-content .tutorial').click(function(){
     $('.welcome').fadeOut(300, tutorial);
   });
-  
-  // Add Matrix markers to this seems a brackets -> [ ]
-  $('.matrix').prepend('<div class="brackets-before"></div>');
-  $('.matrix').append('<div class="brackets-after"></div>');
-  $('#result').prepend('<div class="brackets-before"></div>');
-  $('#result').append('<div class="brackets-after"></div>');
+  function insertBrackets(){
+    // Add Matrix markers to this seems a brackets -> [ ]
+    $('.matrix').prepend('<div class="brackets-before"></div>');
+    $('.matrix').append('<div class="brackets-after"></div>');
+  }
+  insertBrackets();
+    $('#result').prepend('<div class="brackets-before"></div>');
+    $('#result').append('<div class="brackets-after"></div>');
 };
 
