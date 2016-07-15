@@ -3,29 +3,6 @@ function loadMatricesDOM() {
   $('.adsense').html('Aqui meu esforço se fará válido...');
 
 var matrixWidth = $('.matrix').eq(0).width(); // Size of matrix
-function test_key(selkey){
-    var alias = {
-        "ctrl":  17,
-        "shift": 16,
-        "A":     65,
-        /* ... */
-    };
-    return key[selkey] || key[alias[selkey]];
-}
-
-function test_keys(){
-    var i,
-        keylist = arguments,
-        status = true;
-
-    for(i = 0; i < keylist.length; i++){
-        if(!test_key(keylist[i])){
-            status = false;
-        }
-    }
-
-    return status;
-}
   // Deselect all texts in page
   function clearSelection() {
     if ( document.selection ) {
@@ -191,6 +168,7 @@ function test_keys(){
     if (e.keyCode == 32) { // Add cell with SpaceBar
       if (shifted) { // Add cell with SpaceBar
         e.preventDefault();
+        var html = "";
         var scrollTop = document.body.scrollTop;
         matrix.children('.row').each(function(i){
           $('<input type="text" class="cell">').insertAfter($(this).children('.cell').eq(indexCell));

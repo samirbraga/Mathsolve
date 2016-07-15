@@ -20,6 +20,7 @@ app.listen(port, function () {
 
 // include math matrix operators
 var math = require('./solutions/matrix/allsolutions.js');
+var mathjs = require('mathjs');
 // matrix fill page content
 
 app.get('/', function (req, res) {
@@ -48,7 +49,7 @@ app.get('/matriz/:operation', function (req, res) {
 			res.send(JSON.stringify(math.multiply(matrixA, matrixB)));
 			break;
 		case "det":
-			res.send(JSON.stringify(math.det(matrixA, matrixA.length)));
+			res.send(JSON.stringify(mathjs.det(matrixA)));
 			break;
 	};
 });
