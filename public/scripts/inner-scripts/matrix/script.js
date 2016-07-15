@@ -338,7 +338,7 @@ function test_keys(){
         alertInfo('Preencha todas as células corretamente!');
       }else{
         if(self.children('.row').length == self.children('.row').eq(0).children('.cell').length){
-          alertInfo('<img src="../images/loading.gif" style="width: 40px; height: 40px" align="center">');
+          //alertInfo('<img src="../images/loading.gif" style="width: 40px; height: 40px" align="center">');
           $.post('/matriz', {
             'matrixA': JSON.stringify(selfMatrix),
             'matrixB': JSON.stringify(selfMatrix)
@@ -346,7 +346,7 @@ function test_keys(){
           function (Data){
             $.get('/matriz/det',
             function(data){
-              alertInfo('O <i>Determinante</i> da respectiva matriz é: <b>' +parseFloat(data)+'</b>');
+              alertInfo('O <i>Determinante</i> da respectiva matriz é: <b>' +parseFloat(JSON.parse(data))+'</b>');
             });
           });
         }else{
