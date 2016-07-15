@@ -331,48 +331,29 @@ function test_keys(){
       });
     } 
     var det = function() {
+      loadMatrices();
+      var result;
+      var selfMatrix = matrix['matrix' + self.index('.matrix')];
       if(anyEmpty){
         alertInfo('Preencha todas as células corretamente!');
       }else{
         if(self.children('.row').length == self.children('.row').eq(0).children('.cell').length){
-          var result;
-          loadMatrix();
-          if (matrix['matrix' + self.index('.matrix')][0].length == 1 && matrix['matrix' + self.index('.matrix')].length == 1) {
-            result = matrix['matrix' + self.index('.matrix')][0][0];
-          } else if (matrix['matrix' + self.index('.matrix')][0].length == 2 && matrix['matrix' + self.index('.matrix')].length == 2) {
-            result = (matrix['matrix' + self.index('.matrix')][0][0] * matrix['matrix' + self.index('.matrix')][1][1]) - (matrix['matrix' + self.index('.matrix')][0][1] * matrix['matrix' + self.index('.matrix')][1][0]);
-          } else if (matrix['matrix' + self.index('.matrix')][0].length == 3 && matrix['matrix' + self.index('.matrix')].length == 3) {
-            var d1 = 0, d2 = 0;
-            var determinant = [];
-            determinant = matrix['matrix' + self.index('.matrix')];
-            determinant[0].push(determinant[0][0]);
-            determinant[0].push(determinant[0][1]);
-            determinant[1].push(determinant[1][0]);
-            determinant[1].push(determinant[1][1]);
-            determinant[2].push(determinant[2][0]);
-            determinant[2].push(determinant[2][1]);
-            d1 = +(determinant[0][0]*determinant[1][1]*determinant[2][2])
-                 +(determinant[0][1]*determinant[1][2]*determinant[2][3])
-                 +(determinant[0][2]*determinant[1][3]*determinant[2][4]);
-
-            d2 = +(determinant[0][2]*determinant[1][1]*determinant[2][0])
-                 +(determinant[0][3]*determinant[1][2]*determinant[2][1])
-                 +(determinant[0][4]*determinant[1][3]*determinant[2][2]);
-
-            result = d1-d2;
-          }else{
-
-          }
-          alertInfo('O <i>Determinante</i> da respectiva matriz é: <b>' +result+'</b>');
-
+          alertInfo('<img src="../images/loading.gif" style="width: 40px; height: 40px" align="center">');
+          $.post('/matriz', {
+            'matrixA': JSON.stringify(selfMatrix),
+            'matrixB': JSON.stringify(selfMatrix)
+          },
+          function (Data){
+            $.get('/matriz/det',
+            function(data){
+              alertInfo('O <i>Determinante</i> da respectiva matriz é: <b>' +parseFloat(data)+'</b>');
+            });
+          });
         }else{
-          
           alertInfo('Para calcular o <i>Determinante</i> de uma matriz, esta deve ser quadrada.');
         }
       }
-      
     }
-
     var trace = function(){
       if(anyEmpty){
         alertInfo('Preencha todas as células corretamente!');

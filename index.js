@@ -28,7 +28,7 @@ app.get('/', function (req, res) {
 
 matrixA = [];
 matrixB = [];
-
+this.actualMatrix = [];
 app.post('/matriz', function (req, res) {
     matrixA = [];
     matrixB = [];
@@ -47,6 +47,8 @@ app.get('/matriz/:operation', function (req, res) {
 		case "multiply":
 			res.send(JSON.stringify(math.multiply(matrixA, matrixB)));
 			break;
+		case "det":
+			res.send(JSON.stringify(math.det(matrixA, matrixA.length)));
+			break;
 	};
 });
-
