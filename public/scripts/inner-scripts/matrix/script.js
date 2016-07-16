@@ -606,7 +606,7 @@ var matrixWidth = $('.matrix').eq(0).width(); // Size of matrix
         loadMatrices();
         $('.result, .result .resultMatrix').css('display', 'inline-block'),
         $('.result .equation').html('');
-        $('.result .resultMatrix').html('<img src="http://www.arabianbusiness.com/skins/ab.main/gfx/loading_spinner.gif" style="width: 100px; height: 100px" align="center">');
+        $('.result .resultMatrix').html('<img src="../images/loading.gif" style="width: 40px; height: 40px" align="center">');
         var matrixA = matrix.matrix0;
         var matrixB = matrix.matrix1;
         $.post('/matriz', {
