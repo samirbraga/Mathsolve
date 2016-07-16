@@ -316,7 +316,7 @@ var matrixWidth = $('.matrix').eq(0).width(); // Size of matrix
         alertInfo('Preencha todas as células corretamente!');
       }else{
         if(self.children('.row').length == self.children('.row').eq(0).children('.cell').length){
-          //alertInfo('<img src="../images/loading.gif" style="width: 40px; height: 40px" align="center">');
+          //alertInfo('<img src="images/loading.gif" style="width: 40px; height: 40px" align="center">');
           $.post('/matriz', {
             'matrixA': JSON.stringify(selfMatrix),
             'matrixB': JSON.stringify(selfMatrix)
@@ -606,7 +606,7 @@ var matrixWidth = $('.matrix').eq(0).width(); // Size of matrix
         loadMatrices();
         $('.result, .result .resultMatrix').css('display', 'inline-block'),
         $('.result .equation').html('');
-        $('.result .resultMatrix').html('<img src="../images/loading.gif" style="width: 40px; height: 40px" align="center">');
+        $('.result .resultMatrix').html('<img src="images/loading.gif" style="width: 40px; height: 40px" align="center">');
         var matrixA = matrix.matrix0;
         var matrixB = matrix.matrix1;
         $.post('/matriz', {
