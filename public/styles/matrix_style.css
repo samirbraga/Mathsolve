@@ -1,0 +1,180 @@
+
+.matrices{
+  width: 100%;
+  position: relative;
+  margin: auto;
+  height: auto;
+  min-height: 300px;
+  padding: 30px;
+  text-align: center;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.matrices-align{
+  width: auto;
+  max-width: 100%;
+  overflow-x: auto;
+  height: auto;
+  position: relative;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+.matrix {
+  padding: 5px;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  background: transparent;
+  position: relative;
+}
+.row {
+  display: -webkit-flex;
+  display: flex;
+  align-items: left;
+  justify-content: left;
+}
+
+.matrices-options{
+  width: 100%;
+  height: 30px;
+  margin: 20px 0 20px 0;
+}
+
+.matrices-options button{
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border: 3px solid #3c948b;
+  float: right;
+  color: #3c948b;
+  font-size: 20pt;
+}
+
+/*pseudo-brackets in matrices sides*/
+.brackets-before{
+  display: inline-block;
+  width: 5px;
+  height: 100%;
+  background: #255b55;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.brackets-before:before{
+  content: '';
+  height: 5px;
+  width: 20px;
+  background: #255b55;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.brackets-before:after{
+  content: '';
+  height: 5px;
+  width: 20px;
+  background: #255b55;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.brackets-after{
+  display: inline-block;
+  width: 5px;
+  height: 100%;
+  background: #255b55;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.brackets-after:before{
+  content: '';
+  height: 5px;
+  width: 20px;
+  background: #255b55;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.brackets-after:after{
+  content: '';
+  height: 5px;
+  width: 20px;
+  background: #255b55;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+/*inputs text in matrix (cells)*/
+.cell {
+  margin: 0;
+  max-width: 250px;
+  max-height: 250px;
+  min-width: 30px;
+  min-height: 30px;
+  width: 300px;
+  height: 300px;
+  text-align: center;
+  vertical-align: middle;
+  border: 0;
+  outline: none;
+  font-size: 12pt;
+  font-weight: bold;
+  background:transparent; 
+}
+/* class added on hover in cell to show its row an its column */
+.showed {
+  border: solid 1px #3c948b;
+}
+.selected {
+  border: solid 1px red;
+}
+.cell:focus {
+  border: solid 1px #333;
+}
+.result {
+  position: relative;
+  height: auto;
+  width: 100%;
+  font-size: 12pt;
+  padding: 5px 10px;
+  margin: 0 auto 40px auto;
+  top: 30px;
+  bottom: 70px;
+  display: none;
+  text-align: center;
+}
+.result .resultMatrix{
+  position: relative;
+  height: auto;
+  width: auto;
+}
+.result span {
+  font-size: 12pt;
+  display: inline-block;
+  text-align: center;
+  min-width: 80px;
+  width: auto;
+  height: 80px;
+  line-height: 80px;
+  margin: 2px;
+  font-weight: bold;
+  color: #255b55;
+}
+hr{
+  display: none;
+  height: 2px;
+  background: #255b55;
+  width: 90%;
+  margin: 10px auto;
+}
+.result .brackets-before, .result .brackets-before:before, .result .brackets-before:after, .result .brackets-after, .result .brackets-after:before, .result .brackets-after:after{
+  background: #255b55;
+}

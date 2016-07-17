@@ -23,8 +23,11 @@ var math = require('./solutions/matrix/allsolutions.js');
 var mathjs = require('mathjs');
 // matrix fill page content
 
-app.get('/', function (req, res) {
+app.get('/matriz', function (req, res) {
 	res.render('layout.html');
+});
+app.get('/', function (req, res) {
+	res.render('welcome.html');
 });
 
 matrixA = [];
