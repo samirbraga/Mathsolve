@@ -21,7 +21,7 @@ $(document).ready(function(){
 	$('div.pages').each(function(){
 		var $obj = $(this);
 		$(window).scroll(function() {
-			var yPos = -($(window).scrollTop() / ($obj.data('speed') || 15)); 
+			var yPos = -(($(window).scrollTop() - $obj.offset().top) / ($obj.data('speed') || 15)); 
 			var bgpos = '0 '+ yPos + 'px';
 			$obj.css('background-position', bgpos );
 		}); 
