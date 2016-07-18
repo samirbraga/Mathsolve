@@ -32,6 +32,34 @@ a:hover{
 li{
   list-style: none;
 }
+
+.title{
+  width: auto;
+  display: inline-block;
+}
+.title h1{
+  font-size: 29pt;
+  font-weight: normal;
+  text-align: left;
+  top: 0;
+  width: auto;
+  display: block;
+  color: #000;
+}
+.title h1 .title-line1{
+  width: calc(100% + 25px);
+  height: 4px;
+  position: relative;
+  background: #3c948b;
+  z-index: 10;
+}
+.title h1 .title-line2{
+  width: 100%;
+  height: 6px;
+  background: #022d28;
+  position: relative;
+  z-index: 12;
+}
 .topBar{
 	position: absolute;
   width: 100%;
@@ -111,6 +139,12 @@ li{
   justify-content: center;
   color: #fff;
 }
+.center-vetically{
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+}
 .shadow{
   -webkit-box-shadow: 0 0 2px 1px rgba(0,0,0,0.2);
   -moz-box-shadow: 0 0 5px 1px rgba(0,0,0,0.4);
@@ -127,6 +161,9 @@ li{
   width: 100vw;
   max-width: 100%;
   height: 100vh;
+  background-position: 50% 0;
+  background-repeat: repeat;
+  background-attachment: fixed;
   background-size: cover;
   overflow: hidden;
   position: relative;
@@ -221,8 +258,7 @@ li{
   bottom: 0;
 }
 .pageContent .page1{
-  background: url('../Images/welcome/demo2.jpg') no-repeat;
-  background-size: cover;
+  background-image: url('../Images/welcome/demo2.jpg');
   z-index: 10;
 }
 .pageContent .page1 .invite{
@@ -259,17 +295,47 @@ li{
   color: #fff;
 }
 .pageContent .page2{
-  background: #fff;
+  background-image: url('../Images/welcome/demo1.jpg');
+  text-align: center;
 }
-.pageContent .page2 .img-box{
-  width: 400px;
-  height: 200px;
-  overflow: hidden;
+.pageContent .page2 article .img-box{
+  width: 40%;
+  min-width: 300px;
+  display: inline-block;
+  border: 3px solid #022d28;
 }
-.pageContent .page2 .img-box img{
+.pageContent .page2 article .img-box img{
   position: relative;
-  width: 400px;
+  width: 100%;
   height: auto;
+}
+.pageContent .page2 article .text-box{
+  text-align: left;
+  height: auto;
+  display: inline-block;
+  margin: 10px 20px;
+  padding: 20px;
+  border-left: 3px solid #3c948b;
+  width: auto;
+  max-width: 50%;
+  vertical-align: top;
+}
+.pageContent .page2 article .text-box p{
+  font-size: 14pt;
+  margin: 10px 0;
+  line-height: 30px;
+}
+.pageContent .pages article{
+  margin: 20px 0;
+  text-align: center;
+  width: 100%;
+  height: 70%;
+  padding: 30px 5%;
+  background: #fff;
+  /*
+  background: url('../Images/welcome/pages-way/page1.png') #fff no-repeat;
+  background-position: 0 calc(100% + 20px);
+  background-size: 100% auto;*/
 }
 
 .pageContent 
@@ -281,6 +347,7 @@ li{
   float: right;
   margin: 20px;
 }
+
 
 .footer{
   height: 200px;

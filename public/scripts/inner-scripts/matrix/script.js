@@ -242,33 +242,37 @@ var matrixWidth = $('.matrix').eq(0).width(); // Size of matrix
     var self = $(this);
     var name = String.fromCharCode(+65 + self.index('.matrix'));
     tooltip = $('<div class="tooltip tooltip' + self.index('.matrix') + '"></div>');
-    tooltip.appendTo($('body'));
+    if($('.tooltip').length == 0){
+      tooltip.appendTo('body');
 
-    tooltip.html(name + "<sub>(" + self.children('.row').length  + " x " + self.children('.row').eq(0).children('.cell').length +")</sub>" );
-    tooltip.css({
-      position: 'absolute',
-      background: '#000',
-      color: '#fff',
-      width: '100px',
-      padding: '10px',
-      display: 'none',
-      fontSize: '12pt',
-      textAlign: 'center',
-      left: (self.offset().left + (self.width()/2)) -40,
-      top: self.offset().top -40
+      tooltip.html(name + "<sub>(" + self.children('.row').length  + " x " + self.children('.row').eq(0).children('.cell').length +")</sub>" );
+      tooltip.css({
+        position: 'absolute',
+        background: '#000',
+        color: '#fff',
+        width: '100px',
+        padding: '10px',
+        display: 'none',
+        fontSize: '12pt',
+        textAlign: 'center',
+        left: (self.offset().left + (self.width()/2)) -40,
+        top: self.offset().top -40
+      })
+      tooltip.find('sup').css({
+        fontSize: '8pt'
+      })
+    }
+    self.on('resize', function(){
+      tooltip.css({
+        left: (self.offset().left + (self.width()/2)) -40,
+        top: self.offset().top -40
+      })
     })
-    tooltip.find('sup').css({
-      fontSize: '8pt'
-    })
-    setTimeout(function(){
-      tooltip.fadeIn(200);
-    }, 600)
+    tooltip.fadeIn(200);
   })
   $(document).on('mouseleave', '.matrix', function(e) {
-    $('.tooltip'+$(this).index('.matrix')).fadeOut(200);
-    setTimeout(function(){
-      $('.tooltip'+$(this).index('.matrix')).remove();
-    }, 400)
+    var curtooltip = $('.tooltip'+$(this).index('.matrix'))
+    curtooltip.fadeOut(200, function(){curtooltip.remove()});
   })
 
   $(document).on('contextmenu', '.matrix', function(e) {
