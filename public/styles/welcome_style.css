@@ -250,9 +250,7 @@ li{
 .pageContent .pages hr.bottom{
   width:100%;
   height:8px;
-  background: url('../Images/border-bottom-bg.png') #0c433d repeat-x;
-  background-size: auto 8px;
-  background-position: left top; 
+  background: #fff; 
   position: absolute;
   left: 0;
   bottom: 0;
@@ -260,6 +258,9 @@ li{
 .pageContent .page1{
   background-image: url('../Images/welcome/demo2.jpg');
   z-index: 10;
+}
+.pageContent .page1  hr.bottom{
+  background: #3c948b
 }
 .pageContent .page1 .invite{
   text-align: center;
@@ -298,35 +299,40 @@ li{
   background-image: url('../Images/welcome/demo1.jpg');
   text-align: center;
 }
-.pageContent .page2 article .img-box{
-  width: 40%;
-  min-width: 300px;
-  display: inline-block;
-  border: 3px solid #022d28;
-}
-.pageContent .page2 article .img-box img{
-  position: relative;
-  width: 100%;
-  height: auto;
-}
-.pageContent .page2 article .text-box{
-  text-align: left;
+.pageContent .page2 article .icons-box{
+  text-align: center;
   height: auto;
   display: inline-block;
   margin: 10px 20px;
   padding: 20px;
-  border-left: 3px solid #3c948b;
-  width: auto;
-  max-width: 50%;
-  vertical-align: top;
+  width: 50%;
+  max-width: 500px;
+  vertical-align: middle;
 }
-.pageContent .page2 article .text-box p{
-  font-size: 14pt;
-  margin: 10px 0;
-  line-height: 30px;
+.pageContent .page2 article .icons-box .icons{
+  width: auto;
+  display: inline-block;
+  height: auto;
+  margin: 0 5px;
+}
+.pageContent .page2 article .icons-box .icons:hover div{
+  width: 90px;
+  height: 90px;
+}
+.pageContent .page2 article .icons-box .icons div{
+  width: 80px;
+  height: 80px;
+  background-size: 70px 70px;
+  background-repeat: no-repeat;
+  border-radius: 100%;
+  background-position: center;
+  -webkit-transition: height 0.3s ease-out, width 0.3s ease, background 0.3s ease;
+  -moz-transition: height 0.3s ease-out, width 0.3s ease, background 0.3s ease;
+  -ms-transition: height 0.3s ease-out, width 0.3s ease, background 0.3s ease;
+  -o-transition: height 0.3s ease-out, width 0.3s ease, background 0.3s ease;
+  transition: height 0.3s ease-out, width 0.3s ease, background 0.3s ease;
 }
 .pageContent .pages article{
-  margin: 20px 0;
   text-align: center;
   width: 100%;
   height: 70%;
@@ -338,13 +344,38 @@ li{
   background-size: 100% auto;*/
 }
 
-
 .pageContent .page3{
   background-image: url('../Images/welcome/demo4.jpg');
   text-align: center;
 }
 
-
+.pageContent .page3 article .img-box{
+  width: 40%;
+  min-width: 300px;
+  display: inline-block;
+  border: 3px solid #022d28;
+}
+.pageContent .page3 article .img-box img{
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+.pageContent .page3 article .text-box{
+  text-align: left;
+  height: auto;
+  display: inline-block;
+  margin: 10px 20px;
+  padding: 20px;
+  border-left: 3px solid #3c948b;
+  width: auto;
+  max-width: 50%;
+  vertical-align: top;
+}
+.pageContent .page3 article .text-box p{
+  font-size: 14pt;
+  margin: 10px 0;
+  line-height: 30px;
+}
 .pageContent .page4{
   background-image: url('../Images/welcome/demo6.jpg');
   text-align: center;

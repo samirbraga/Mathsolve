@@ -18,6 +18,7 @@ $(document).ready(function(){
 			scrollTop: next.offset().top
 		}, 400)
 	})
+	// Parallax Effect
 	$('div.pages').each(function(){
 		var $obj = $(this);
 		$(window).scroll(function() {
@@ -60,4 +61,22 @@ $(document).ready(function(){
 			}, 200)
 		})
 	});
+
+	var colors = [];
+	$('.icons-box .icons').mouseenter(function(){
+		colors = [];
+		var icon = $(this).children('div');
+		$('.icons-box .icons').each(function(i){
+			colors.push(icon.css('background-color'));
+			$(this).children('div').css('background-color', '#ccc');
+		});	
+
+		icon.css('background-color', colors[$(this).index('.icons-box .icons')]);
+	})
+
+	$('.icons-box  .icons').mouseleave(function(){
+		$('.icons-box .icons').each(function(i){
+			$(this).children('div').css('background-color', colors[i]);
+		});	
+	})
 })
