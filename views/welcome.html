@@ -35,6 +35,7 @@
       {src: "pow.png", name: "Exponenciação", href: "/exponenciacao", color: "#15857d"},
       {src: "radic.png", name: "Radiciação", href: "/radiciacao", color: "#06665e"},
     ]
+    $scope.curIconName = "";
   })
   </script>
 </head>
@@ -71,17 +72,18 @@
     <div class="pages page2 ">
       <article class="shadow center-vetically">
         <div class="icons-box">
-          <a href="" class="icons" ng-repeat="icon in icons" ng-if="$index <= 3">
+          <a href="{{icon.href}}" class="icons" ng-repeat="icon in icons"  ng-mouseover="curIconName=icon.name" ng-if="$index <= 3">
             <div style="background-image: url('Images/icons/{{icon.src}}'); background-color:{{icon.color}}" ></div>
           </a>
           <br>
-          <a href="" class="icons" ng-repeat="icon in icons" ng-if="$index > 3 && $index <= 6">
+          <a href="{{icon.href}}" class="icons" ng-repeat="icon in icons" ng-if="$index > 3 && $index <= 6">
             <div style="background-image: url('Images/icons/{{icon.src}}'); background-color:{{icon.color}}" ></div>
           </a>
           <br>
-          <a href="" class="icons" ng-repeat="icon in icons" ng-if="$index > 6">
+          <a href="{{icon.href}}" class="icons" ng-repeat="icon in icons" ng-if="$index > 6">
             <div style="background-image: url('Images/icons/{{icon.src}}'); background-color:{{icon.color}}" ></div>
           </a>
+          <div class="icon-name">{{curIconName}}</div>
         </div>
         <div class="text-box">
           <div class="title">

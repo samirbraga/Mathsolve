@@ -332,6 +332,13 @@ li{
   -o-transition: height 0.3s ease-out, width 0.3s ease, background 0.3s ease;
   transition: height 0.3s ease-out, width 0.3s ease, background 0.3s ease;
 }
+.pageContent .page2 article .icons-box .icon-name{
+  padding: 5px;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 12pt;
+  display: none;
+}
 .pageContent .pages article{
   text-align: center;
   width: 100%;

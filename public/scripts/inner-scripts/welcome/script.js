@@ -64,14 +64,13 @@ $(document).ready(function(){
 
 	var colors = [];
 	$('.icons-box .icons').mouseenter(function(){
-		colors = [];
 		var icon = $(this).children('div');
 		$('.icons-box .icons').each(function(i){
-			colors.push(icon.css('background-color'));
-			$(this).children('div').css('background-color', '#ccc');
+			colors.push($(this).children('div').css('background-color'));
+			$(this).children('div').css('background-color', '#999');
 		});	
-
 		icon.css('background-color', colors[$(this).index('.icons-box .icons')]);
+		$(this).children('div:last').fadeIn('fast');
 	})
 
 	$('.icons-box  .icons').mouseleave(function(){
