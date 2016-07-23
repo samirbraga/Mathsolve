@@ -18,5 +18,8 @@
     "express": "^4.14.0",
     "html": "0.0.10",
     "mathjs": "^3.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
   }
 }

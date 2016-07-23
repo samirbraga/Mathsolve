@@ -2,18 +2,20 @@
 <link rel="stylesheet" type="text/css" href="../styles/matrix_style.css">
 <script type="text/javascript" src="scripts/inner-scripts/matrix/script.js"></script>
 <script type="text/javascript" src="scripts/inner-scripts/matrix/script_tutorial.js"></script>
-<div class="matrices" ng-init="fill.loadScriptToDOM()">
+<div id="calc" class="matrices" ng-init="fill.loadScriptToDOM()">
   <div class="matrices-align">
     <div class="matrix">
       <div class="row row1">
         <input type="text" class="cell">
       </div>
     </div>
-    <select class="operator">
+    <br>
+    <select data-title="Escolha a operação" class="operator">
       <option value="sum">+</option>
       <option value="minus">-</option>
       <option value="multiply">x</option>
     </select>
+    <br>
     <div class="matrix">
       <div class="row row1">
         <input type="text" class="cell">
@@ -22,6 +24,6 @@
   </div>
   <br>
   <div class="matrices-options">
-    <button class="invertMatricesOrder">⇋</button>
+    <button data-title="Inverter matrizes" data-title-position="right" class="invertMatricesOrder">⇋</button>
   </div>
 </div>

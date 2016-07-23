@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="shortcut icon" href="Images/favicos/welcome.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="keywords" content="matemática, online, math, matriz, matrizes, matrix, matrices, mathematic, resolver, calculadora, calc online, determinante, determinant, traço, trace, matriz inversa, matriz transposta, transposed matrix, solve matrix online, resolver matriz online, mathsolve, samir braga, calcular, calcular matriz">   
   <meta name="description" content="Resolva matrizes online com o MathSolve, calcule determinante, execute operações de soma, subtração, multplicação e matriz inversa, com um sistema simples, de fácil manusemaneto, um tutorial e com demonstração de regras! Tudo gratuito!">
@@ -16,44 +17,15 @@
   <script type="text/javascript" src="libraries/angular.min.js"></script>
   <script type="text/javascript" src="scripts/app.js"></script>
   <script type="text/javascript" src="scripts/directives/replaceInclude.js"></script>
-  <script type="text/javascript" src="scripts/controllers/welcomeCtrl.js"></script>
+  <script type="text/javascript" src="scripts/controllers/generalCtrl.js"></script>
   <script type="text/javascript" src="scripts/filters/bind-html.js"></script>
   <script type="text/javascript" src="scripts/inner-scripts/welcome/script.js"></script>
+  <script type="text/javascript" src="scripts/inner-scripts/general.js"></script>
   <link rel="stylesheet" type="text/css" href="../styles/welcome_style.css">
-  <script type="text/javascript">
-  app.controller("mathsolveCtrl", function($scope){
-    $scope.icons = [
-      {src: "matrix.png", name: "Matriz", href: "/matriz", color: "#26645c"},
-      {src: "consts.png", name: "Contantes", href: "/contantes", color: "#3a8b83"},
-      {src: "log.png", name: "Logaritmo", href: "/logaritmo", color: "#1d9989"},
-      {src: "2equation.png", name: "Equação do 2º grau", href: "/equacao2", color: "#116f72"},
-      {src: "1equation.png", name: "Equação do 1º grau", href: "/equacao1", color: "#0e7a72"},
-      {src: "convert.png", name: "Conversão", href: "/conversao", color: "#0a7e74"},
-      {src: "geometry.png", name: "Geometria", href: "/geometria", color: "#16857d"},
-      {src: "percent.png", name: "Porcentagem", href: "/porcentagem", color: "#16857d"},
-      {src: "progress.png", name: "Progressões", href: "/progress", color: "#1c998d"},
-      {src: "pow.png", name: "Exponenciação", href: "/exponenciacao", color: "#15857d"},
-      {src: "radic.png", name: "Radiciação", href: "/radiciacao", color: "#06665e"},
-    ]
-    $scope.curIconName = "";
-  })
-  </script>
+  <link rel="stylesheet" type="text/css" href="../styles/general_style.css">
 </head>
 <body ng-controller="mathsolveCtrl">
-  <div class="topBar">
-    <div class="striped-bar"></div>
-    <div class="content">
-      <a href="/"><div class="logo"></div></a>
-      <nav class="menu">
-        <ul>
-          <li>Matérias</li>
-          <li>Tutoriais</li>
-          <li>Redes Sociais</li>
-          <li>Sobre</li>
-        </ul>
-      </nav>
-    </div>
-  </div>
+  <div ng-include="'views/default_topbar.html'" include-replace></div>
   <div class="pageContent">
     <div class="pages page1 center">
       <header class="invite"> 
@@ -72,21 +44,20 @@
     <div class="pages page2 ">
       <article class="shadow center-vetically">
         <div class="icons-box">
-          <a href="{{icon.href}}" class="icons" ng-repeat="icon in icons"  ng-mouseover="curIconName=icon.name" ng-if="$index <= 3">
-            <div style="background-image: url('Images/icons/{{icon.src}}'); background-color:{{icon.color}}" ></div>
+          <a href="{{icon.href}}" data-title="{{icon.name}}" class="icons" ng-repeat="icon in icons" ng-if="$index <= 3">
+            <div ng-style="{'background-image': 'url(\'Images/icons/'+icon.src+'\')', 'background-color': icon.color}" ></div>
           </a>
           <br>
-          <a href="{{icon.href}}" class="icons" ng-repeat="icon in icons" ng-if="$index > 3 && $index <= 6">
-            <div style="background-image: url('Images/icons/{{icon.src}}'); background-color:{{icon.color}}" ></div>
+          <a href="{{icon.href}}" data-title="{{icon.name}}" class="icons" ng-repeat="icon in icons" ng-if="$index > 3 && $index <= 6">
+            <div ng-style="{'background-image': 'url(\'Images/icons/'+icon.src+'\')', 'background-color': icon.color}" ></div>
           </a>
           <br>
-          <a href="{{icon.href}}" class="icons" ng-repeat="icon in icons" ng-if="$index > 6">
-            <div style="background-image: url('Images/icons/{{icon.src}}'); background-color:{{icon.color}}" ></div>
+          <a href="{{icon.href}}" data-title="{{icon.name}}" class="icons" ng-repeat="icon in icons" ng-if="$index > 6">
+            <div ng-style="{'background-image': 'url(\'Images/icons/'+icon.src+'\')', 'background-color': icon.color}" ></div>
           </a>
-          <div class="icon-name">{{curIconName}}</div>
         </div>
         <div class="text-box">
-          <div class="title">
+          <div class="title" >
             <h1><span>Tudo em poucos cliques</span> <br>  
               <div class="title-line1"></div>
               <div class="title-line2"></div>
@@ -145,8 +116,6 @@
     </div>
   </div>
   <div class="adsense"></div>
-  <footer class="footer">
-    <div class="adsense"></div>
-  </footer>
+  <div ng-include="'views/footer.html'" include-replace></div>
 </body>
 </html>

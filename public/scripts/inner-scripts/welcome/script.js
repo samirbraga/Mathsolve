@@ -27,40 +27,7 @@ $(document).ready(function(){
 			$obj.css('background-position', bgpos );
 		}); 
 	});
-	$('[data-img-target]').each(function(){
-		var obj = $(this);
-		var value = obj.attr('data-img-title');
-		var target = obj.attr('data-img-target');
-		obj.css({
-			'overflow': 'hidden',
-			'position': 'relative'
-		});
-		var alt = $('<div></div>');
-		var a = $('<a href="'+target+'" target="_blank"></a>');
-		a.appendTo(obj);
-		alt.appendTo(a)
-		.css({
-			background: "rgba(0,0,0,.5)",
-			color: '#fff',
-			padding: '10px',
-			margin: '5px',
-			position: 'absolute',
-			top: '-60px',
-			right: '5px',
-			fontSize: '12pt'
-		})
-		.html(value)
-		obj.stop().mouseenter(function(){
-			alt.animate({
-				top: '8px'
-			}, 200)
-		})
-		obj.stop().mouseleave(function(){
-			alt.delay(500).animate({
-				top: '-60px'
-			}, 200)
-		})
-	});
+	
 
 	var colors = [];
 	$('.icons-box .icons').mouseenter(function(){
@@ -70,7 +37,9 @@ $(document).ready(function(){
 			$(this).children('div').css('background-color', '#999');
 		});	
 		icon.css('background-color', colors[$(this).index('.icons-box .icons')]);
-		$(this).children('div:last').fadeIn('fast');
+		/*$(this).parent().children('div:last')
+		.html($(this).data('name'))
+		.fadeIn('fast');*/
 	})
 
 	$('.icons-box  .icons').mouseleave(function(){
@@ -78,4 +47,5 @@ $(document).ready(function(){
 			$(this).children('div').css('background-color', colors[i]);
 		});	
 	})
+	
 })

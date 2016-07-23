@@ -105,6 +105,9 @@ li{
   transition: border 0.1s ease;
   vertical-align: middle;
 }
+.topBar .content .menu input{
+  visibility: hidden;
+}
 .topBar .content .menu ul li:nth-child(1):hover{
   border-bottom: solid 3px #008c83;
 }
@@ -318,6 +321,12 @@ li{
 .pageContent .page2 article .icons-box .icons:hover div{
   width: 90px;
   height: 90px;
+  border-bottom: 2px solid #1d544e;
+  -webkit-box-shadow: 0px 3px 1px 0px rgba(10, 10, 10, 0.6);
+  -moz-box-shadow: 0px 3px 1px 0px rgba(10, 10, 10, 0.6);
+  -ms-box-shadow: 0px 3px 1px 0px rgba(10, 10, 10, 0.6);
+  -o-box-shadow: 0px 3px 1px 0px rgba(10, 10, 10, 0.6);
+  box-shadow: 0px 3px 6px 0px rgba(10, 10, 10, 0.6);
 }
 .pageContent .page2 article .icons-box .icons div{
   width: 80px;
@@ -333,11 +342,13 @@ li{
   transition: height 0.3s ease-out, width 0.3s ease, background 0.3s ease;
 }
 .pageContent .page2 article .icons-box .icon-name{
-  padding: 5px;
+  padding: 10px;
   background: rgba(0,0,0,0.5);
   color: #fff;
   font-size: 12pt;
   display: none;
+  width: 150px;
+  margin: 10px auto;
 }
 .pageContent .pages article{
   text-align: center;

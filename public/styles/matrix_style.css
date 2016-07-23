@@ -139,6 +139,18 @@
 .cell:focus {
   border: solid 1px #333;
 }
+/*operator (sum, minus, divide, multiply) */
+.operator{
+  width: auto;
+  height: 50px;
+  color: #3c948b;
+  font-size: 20pt;
+  border: 5px solid #3c948b;
+  background: transparent;
+  margin: 10px 30px;
+  padding: 0 10px;
+  display: inline-block;
+}
 .result {
   position: relative;
   height: auto;
@@ -177,4 +189,22 @@ hr{
 }
 .result .brackets-before, .result .brackets-before:before, .result .brackets-before:after, .result .brackets-after, .result .brackets-after:before, .result .brackets-after:after{
   background: #255b55;
+}
+
+@media screen and (max-width: 680px) {
+  .matrices .matrices-align {
+    display: block;
+  }
+  .cell{
+    max-width: 200px;
+    width: 200px;
+    height: 200px;
+  }
+}
+@media screen and (max-width: 880px) and (min-width: 680px) {
+  .cell{
+    max-width: 200px;
+    width: 200px;
+    height: 200px;
+  }
 }

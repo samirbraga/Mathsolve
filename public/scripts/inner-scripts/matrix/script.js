@@ -2,48 +2,10 @@ function loadMatricesDOM() {
 
   $('.adsense').html('Aqui meu esforço se fará válido...');
 
-var matrixWidth = $('.matrix').eq(0).width(); // Size of matrix
-  // Deselect all texts in page
-  function clearSelection() {
-    if ( document.selection ) {
-        document.selection.empty();
-    } else if ( window.getSelection ) {
-        window.getSelection().removeAllRanges();
-    }
-  }/*
-  function prepareData(obj) {
-    if (!obj) obj = {};
-    let data = Object.keys(obj).map(key => {
-        let v = obj[key];
-        let val = v instanceof Date ? v.getTime() / 1000 : v;
-        return [key, val].join('=');
-    }).join('&');
-    return encodeURI(data);
-  }*/
-
+  var matrixWidth = $('.matrix').eq(0).width(); // Size of matrix
   var matrixElA = $('.matrix:eq(0)');
   var matrixElB = $('.matrix:eq(1)');
   
-  // Info about anything that ti will be showed in top of page
-  var alertInfo = function(text){
-    $('.alert').fadeOut(200, function(){
-      $('.alert').remove();
-    });
-    setTimeout(function(){
-      var alert = $('<div class="alert"></div>');
-      var message = $('<span class="alert-message"></span>');
-      alert.appendTo('body');
-      message.appendTo(alert);
-      message.html(text)
-      alert.animate({
-        'top': '20px'
-      })
-      setTimeout(function(){
-        alert.fadeOut();
-      }, 5000)
-    }, 300)
-  }
-
   var matrix = {
     'matrix0': [],
     'matrix1': []
@@ -76,26 +38,27 @@ var matrixWidth = $('.matrix').eq(0).width(); // Size of matrix
     });
     var maxValue0 = Math.max.apply(Math, arr0);
     var maxValue1 = Math.max.apply(Math, arr1);
+    var maxSize = parseFloat(matrixElA.find('.cell').css('max-width'));
     if(matrixElA.find('.row').length > maxValue0){
       matrixElA.find('.cell').css({
-        'width': (250/matrixElA.children('.row').length),
-        'height': (250/matrixElA.children('.row').length)
+        'width': (maxSize/matrixElA.children('.row').length),
+        'height': (maxSize/matrixElA.children('.row').length)
       })
     }else{
       matrixElA.find('.cell').css({
-        'width': (250/maxValue0),
-        'height': (250/maxValue0)
+        'width': (maxSize/maxValue0),
+        'height': (maxSize/maxValue0)
       })
     }
     if(matrixElB.find('.row').length > maxValue1){
       matrixElB.find('.cell').css({
-        'width': (250/matrixElB.children('.row').length),
-        'height': (250/matrixElB.children('.row').length)
+        'width': (maxSize/matrixElB.children('.row').length),
+        'height': (maxSize/matrixElB.children('.row').length)
       })
     }else{
       matrixElB.find('.cell').css({
-        'width': (250/maxValue1),
-        'height': (250/maxValue1)
+        'width': (maxSize/maxValue1),
+        'height': (maxSize/maxValue1)
       })
     }
   }
@@ -164,8 +127,9 @@ var matrixWidth = $('.matrix').eq(0).width(); // Size of matrix
         width: width
       });
     })*/
+    var keycode = e.keycode || e.which;
     shifted = e.shiftKey;
-    if (e.keyCode == 32) { // Add cell with SpaceBar
+    if (keycode == 32) { // Add cell with SpaceBar
       if (shifted) { // Add cell with SpaceBar
         e.preventDefault();
         var html = "";
@@ -180,53 +144,43 @@ var matrixWidth = $('.matrix').eq(0).width(); // Size of matrix
         $('<input type="text" class="cell">').insertAfter($(this));
         $(this).parent().children('.cell').eq(+indexCell+1).focus();
       }
-    } else if (e.keyCode == 13) { // Add row with Enter
+    } else if (keycode == 13) { // Add row with Enter
       newRow = newRow.insertAfter($(this).parent());
+      var cells = "";
       $(this).parent().children('.cell').each(function(i) {
-        newCell = $('<input type="text" class="cell">');
-        newCell.appendTo(newRow).focus();
+        cells += '<input type="text" class="cell">';
       })
-    } else if (e.keyCode == 8 && this.value == "" && $(this).closest('.matrix').find('.cell').length > 1) { // Delete cell with backspace
+      newRow.append(cells);
+      newRow.find('.cell:first').focus();
+    } else if (keycode == 8 && this.value == "" && $(this).closest('.matrix').find('.cell').length > 1) { // Delete cell with backspace
       ++deleteCount;
       if (deleteCount > 1) {
         if(shifted){
+          var rowDelIndex = $(this).parent().index('.matrix .row');
           matrix.children('.row').each(function(i){
             $(this).children('.cell').eq(indexCell).remove();
           })
-          $(this).parent().children('.cell').eq(indexCell-1).focus();
+          matrix.children('.row').eq(rowDelIndex-1).children('.cell').eq(indexCell-1).focus();
         }else{
           $('.cell').eq($(this).index('.cell') - 1).focus();
           if($(this).parent().children().length == 1){
-              $(this).parent().remove();
+            $(this).parent().remove();
           }
           $(this).remove();
         }
         deleteCount = 0;
       }
-    } else if (e.keyCode == 37) { // focus on left cell
+    } else if (keycode == 37) { // focus on left cell
       $('.cell').eq($(this).index('.cell') - 1).focus();
-    } else if (e.keyCode == 39) { // focus on right cell
+    } else if (keycode == 39) { // focus on right cell
       $('.cell').eq(+$(this).index('.cell') + 1).focus();
-    } else if (e.keyCode == 38) { // focus on top cell
+    } else if (keycode == 38) { // focus on top cell
       $('.cell').eq($(this).index('.cell') - $(this).parent().children().length).focus();
-    } else if (e.keyCode == 40) { // focus on bottom cell
+    } else if (keycode == 40) { // focus on bottom cell
       $('.cell').eq(+$(this).index('.cell') + $(this).parent().children().length).focus();
     }
     // Change input text size by its length;
-    
-    if($(this).closest('.matrix').find('.row').length > $(this).parent().find('.cell').length){
-      $(this).closest('.matrix').find('.cell').css({
-        'width': (250/$(this).closest('.matrix').children('.row').length),
-        'height': (250/$(this).closest('.matrix').children('.row').length),
-        'font-size': '13pt'
-      })
-    }else{
-      $(this).closest('.matrix').find('.cell').css({
-        'width': (250/$(this).parent().children('.cell').length),
-        'height': (250/$(this).parent().children('.cell').length),
-        'font-size': '13pt'
-      })
-    }
+    resizeMatrices();
   })
 
   var copied = [];
@@ -442,104 +396,22 @@ var matrixWidth = $('.matrix').eq(0).width(); // Size of matrix
     var remove = function(){
       self.find('.selected').remove();
     }
-    $('.contextMenu').remove();
-    var menu =
-      $('<div class="contextMenu"><ul><li><span class="marker calc">Calcular</span></li><li><span class="option det">Determinante</span><span class="doubt" >?</span></li><li><span class="option trace">Traço</span><span class="doubt" >?</span></li><li><span class="marker convert">Conveter em</span></li><li><span class="option null">Matriz nula</span></li><li><span class="option id">Matriz identidade</span></li><li><span class="option transpose">Matriz transposta</span></li><li><span class="option random">Matriz aleatória</span></li><li><span class="option oper copy">Copiar</span></li><li><span class="option oper paste">Colar</span></li><li><span class="option oper remove">Remover</span></li></ul> </div>');
-    menu.appendTo('body');
-    menu.on('contextmenu', function(e) {
-      e.preventDefault();
-    });
-    menu.css({
-      background: '#fff',
-      padding: '3px 0',
-      width: '300px',
-      position: 'absolute',
-      fontSize: '10pt',
-      boxShadow: '0 0 2px 1px rgba(0,0,0,0.3)'
-    })
-    e = e || window.event;
-    e = jQuery.event.fix(e);
-    menu.css({
-      left: e.pageX > $(document).width() - 300 ? $(document).width() - 300 : e.pageX,
-      top: e.pageY > $(window).height() - menu.height() ? $(window).height() - menu.height() : e.pageY
-    })
+    var matrixMenu = [
+      {type: "divider", title: "Calcular", doubt: false, classes: "calc"}, 
+      {type: "item", title: "Determinante", doubt: true, classes: "det", functions: det}, 
+      {type: "item", title: "Traço", doubt: true, classes: "trace", functions: trace}, 
+      {type: "divider", title: "Converter em", doubt: false, classes: "convert"},
+      {type: "item", title: "Matriz nula", doubt: false, classes: "null", functions: nulled}, 
+      {type: "item", title: "Matriz identidade", doubt: false, classes: "id", functions: id}, 
+      {type: "item", title: "Matriz transposta", doubt: false, classes: "transpose", functions: transpose}, 
+      {type: "item", title: "Matriz aleatória", doubt: false, classes: "random", functions: random}, 
+      {type: "boolean", title: "Copiar", doubt: false, classes: "copy", showed: true, functions: copy}, 
+      {type: "boolean", title: "Colar", doubt: false, classes: "paste", showed: copied.length > 0, functions: paste}, 
+      {type: "boolean", title: "Remover", doubt: false, classes: "remove", showed: $('.selected').length > 0, functions: function(){}}, 
+    ]
+    onContextMenu(matrixMenu, $(this));
+  })
 
-    if(copied.length == 0){
-      menu.find('.paste').parent().addClass('disabled')
-    }
-    menu.children('ul').css({
-      width: '100%',
-      padding: '0',
-      margin: '3px 0',
-      cursor: 'pointer'
-    })
-    menu.find('li').css({
-      'width': '100%',
-      'padding': '2px 10px',
-      'list-style': 'none',
-      'font-family': "'Century Gothic', san-serif",
-      'vertical-align': "middle",
-      'height': '30px',
-      'line-height': '25px',
-      'text-align': 'left',
-      'float': 'left',
-    })
-    menu.find('.marker').parent().css({
-      'color': '#666'
-    })
-    menu.find('.option').parent().css({
-      'padding': '2px 10px 2px 20px'
-    }).hover(function(e) {
-      $(this).css("background-color", e.type === "mouseenter" ? "#f1f2f3" : "#fff")
-    })
-    menu.find('.oper').parent().css({
-      'padding': '2px 10px'
-    })
-    menu.find('.option').css({
-        'display': 'inline-block',
-        'vertical-align': "middle",
-        'width': '80%',
-        'list-style': 'none',
-      'text-align': 'left',
-    });
-    menu.find('.doubt').css({
-      'display': 'inline-block',
-      'width': '25px',
-      'height': '25px',
-      'background': '#3c948b',
-      'color': '#fff',
-      'text-align': 'center',
-      'float': 'right',
-    }).hover(function(e) {
-      $(this).css("background-color", e.type === "mouseenter" ? "#2c6d66" : "#3c948b")
-    })
-    menu.find('.disabled').css({
-      'display': 'none'
-    })
-    menu.find('.remove').parent().css({
-      'display': 'none'
-    })
-    if($('.selected').length > 0){
-      menu.find('.remove').parent().css({
-        'display': 'block'
-      })
-    }
-    menu.find('.det').mousedown(det);
-    menu.find('.trace').mousedown(trace);
-    menu.find('.null').mousedown(nulled);
-    menu.find('.id').mousedown(id);
-    menu.find('.transpose').mousedown(transpose);
-    menu.find('.random').mousedown(random);
-    menu.find('.copy').mousedown(copy);
-    menu.find('.paste').mousedown(paste);
-    menu.find('.remove').mousedown(remove);
-  })
-  $(document).bind('click', function(e) {
-    $('.contextMenu').remove();
-  })
-  $('body').not('.contextMenu').bind('contextmenu', function(e) {
-    $('.contextMenu').remove();
-  })
   var loadMatrices = function(){
     matrix.matrix0 = [];
     matrix.matrix1 = [];
