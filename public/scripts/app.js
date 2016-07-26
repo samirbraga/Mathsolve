@@ -1,1 +1,1 @@
-var app = angular.module("mathsolve", []);
+var app = angular.module("mathsolve", ['ngRoute']);

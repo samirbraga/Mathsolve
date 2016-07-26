@@ -47,13 +47,7 @@
 }
 
 .matrices-options button{
-  width: 40px;
-  height: 40px;
-  background: #fff;
-  border: 3px solid #3c948b;
   float: right;
-  color: #3c948b;
-  font-size: 20pt;
 }
 
 /*pseudo-brackets in matrices sides*/
@@ -167,16 +161,13 @@
   position: relative;
   height: auto;
   width: auto;
+  margin-top: 15px;
 }
 .result span {
   font-size: 12pt;
   display: inline-block;
   text-align: center;
-  min-width: 80px;
   width: auto;
-  height: 80px;
-  line-height: 80px;
-  margin: 2px;
   font-weight: bold;
   color: #255b55;
 }

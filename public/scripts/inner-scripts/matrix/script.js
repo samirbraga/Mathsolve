@@ -3,17 +3,19 @@ function loadMatricesDOM() {
   $('.adsense').html('Aqui meu esforço se fará válido...');
 
   var matrixWidth = $('.matrix').eq(0).width(); // Size of matrix
-  var matrixElA = $('.matrix:eq(0)');
-  var matrixElB = $('.matrix:eq(1)');
+  var matrixElA = $('.matrix:eq(0)'); // Capture the ELEMENT matrixA in DOM
+  var matrixElB = $('.matrix:eq(1)'); // Capture the ELEMENT matrixB in DOM
   
+  // Object that will be load the matrices arrays
   var matrix = {
     'matrix0': [],
     'matrix1': []
   };
 
+  // load all matrices to the object 'matrix' above
   var loadMatrices = function(){
-    matrix.matrix0 = [];
-    matrix.matrix1 = [];
+    matrix.matrix0 = []; // reset 'matrix0'
+    matrix.matrix1 = []; // reset 'matrix1'
     matrixElA.children('.row').each(function(ind) {
       matrix.matrix0[ind] = [];
       $(this).children('.cell').each(function(index) {
@@ -26,7 +28,9 @@ function loadMatricesDOM() {
         matrix.matrix1[ind][index] = this.value.replace(/ /g, '');
       });
     });
-  } 
+  }
+
+  // funcion to resize the matrices by its cells number
   var resizeMatrices = function(){
     var arr0 = []; //populate the length of children into this array.
     var arr1 = []; //populate the length of children into this array.
@@ -62,6 +66,26 @@ function loadMatricesDOM() {
       })
     }
   }
+
+  // Create matrix element by any bidimensional array
+  var createMatrixElement = function(array, ind){
+    loadMatrices();
+    var _matrix = array;
+    var _matrixEl = $('.matrix').eq(ind)
+    _matrixEl.html('');
+    var _rows = "";
+    _matrix.forEach(function(element, index){
+      _rows += '<div class="row row'+index+'">';
+      _matrix[index].forEach(function(el, i){
+        _rows += '<input type="text" class="cell" value="'+_matrix[index][i]+'" >';
+      });
+      _rows += '</div>';
+    })
+    $('.matrix').eq(ind).append(_rows);
+    insertBrackets();
+  }
+
+
   var invertMatricesOrder = function(){
     loadMatrices();
     var matrixA = [];
@@ -69,29 +93,13 @@ function loadMatricesDOM() {
     matrixA = matrix.matrix1;
     matrixB = matrix.matrix0;
     matrixElA.html('');
-    matrixA.forEach(function(element, index){
-      var _row = $('<div class="row row'+index+'"></div>');
-      _row = _row.appendTo(matrixElA);
-      matrixA[index].forEach(function(el, i){
-        var _cell = $('<input type="text" class="cell" >');
-        _cell.appendTo(_row)
-        _cell.val(matrixA[index][i]);
-      });
-    })
-    matrixElB.html('');
-    matrixB.forEach(function(element, index){
-      var _row = $('<div class="row row'+index+'"></div>');
-      _row = _row.appendTo(matrixElB);
-      matrixB[index].forEach(function(el, i){
-        var _cell = $('<input type="text" class="cell" >');
-        _cell = _cell.appendTo(_row)
-        _cell.val(matrixB[index][i]);
-      });
-    })
+    createMatrixElement(matrixA, 0);
+    createMatrixElement(matrixB, 1);
     insertBrackets();
     resizeMatrices();
   }
   $('.invertMatricesOrder').click(invertMatricesOrder);
+
 
   var deleteCount = 0; // count two keydowns to delete a input
 
@@ -129,16 +137,16 @@ function loadMatricesDOM() {
     })*/
     var keycode = e.keycode || e.which;
     shifted = e.shiftKey;
-    if (keycode == 32) { // Add cell with SpaceBar
-      if (shifted) { // Add cell with SpaceBar
+    if (keycode == 32) { // Add cells with SpaceBar
+      if (shifted) { // Add a new collumn of cells with Shift + SpaceBar
         e.preventDefault();
         var html = "";
         var scrollTop = document.body.scrollTop;
         matrix.children('.row').each(function(i){
           $('<input type="text" class="cell">').insertAfter($(this).children('.cell').eq(indexCell));
           $(this).children('.cell').eq(+indexCell+1).focus();
-        })
-        $(window).scrollTop(scrollTop)
+        });
+        $(window).scrollTop(scrollTop);
       }else{
         e.preventDefault();
         $('<input type="text" class="cell">').insertAfter($(this));
@@ -149,7 +157,7 @@ function loadMatricesDOM() {
       var cells = "";
       $(this).parent().children('.cell').each(function(i) {
         cells += '<input type="text" class="cell">';
-      })
+      });
       newRow.append(cells);
       newRow.find('.cell:first').focus();
     } else if (keycode == 8 && this.value == "" && $(this).closest('.matrix').find('.cell').length > 1) { // Delete cell with backspace
@@ -190,45 +198,41 @@ function loadMatricesDOM() {
   $(document).on('dblclick', '.cell', function(e) {
     $(this).addClass('selected');
   })*/
-  var tooltip;
-
+  
+  var tooltip = $('<div class="mt-tooltip"></div>')
   $(document).on('mouseenter', '.matrix', function(e) {
     var self = $(this);
     var name = String.fromCharCode(+65 + self.index('.matrix'));
-    tooltip = $('<div class="tooltip tooltip' + self.index('.matrix') + '"></div>');
-    if($('.tooltip').length == 0){
-      tooltip.appendTo('body');
-
-      tooltip.html(name + "<sub>(" + self.children('.row').length  + " x " + self.children('.row').eq(0).children('.cell').length +")</sub>" );
-      tooltip.css({
-        position: 'absolute',
-        background: '#000',
-        color: '#fff',
-        width: '100px',
-        padding: '10px',
-        display: 'none',
-        fontSize: '12pt',
-        textAlign: 'center',
-        left: (self.offset().left + (self.width()/2)) -40,
-        top: self.offset().top -40
+    var count;
+    var posStyle = {};
+    count = setTimeout(function(){
+      tooltip.appendTo('body')
+      .css({
+        position: "absolute",
+        padding: "8px",
+        fontSize: "10pt",
+        background: "rgba(0,0,0,0.7)",
+        color: "#fff",
+        display: "none",
+        zIndex: 90
       })
-      tooltip.find('sup').css({
-        fontSize: '8pt'
+      .html(name + "<sub>(" + self.children('.row').length  + " x " + self.children('.row').eq(0).children('.cell').length +")</sub>");
+      tooltip.css({
+            left: (self.offset().left + self.outerWidth()/2) - tooltip.innerWidth()/2 ,
+            top: (self.offset().top) - tooltip.innerHeight() - 10
+          })
+      .fadeIn('fast');
+    }, 350);
+    function hideTooltip(){
+      clearTimeout(count)
+      tooltip.fadeOut('fast', function(){
+        tooltip.remove();
       })
     }
-    self.on('resize', function(){
-      tooltip.css({
-        left: (self.offset().left + (self.width()/2)) -40,
-        top: self.offset().top -40
-      })
-    })
-    tooltip.fadeIn(200);
-  })
-  $(document).on('mouseleave', '.matrix', function(e) {
-    var curtooltip = $('.tooltip'+$(this).index('.matrix'))
-    curtooltip.fadeOut(200, function(){curtooltip.remove()});
-  })
-
+    self.mouseleave(hideTooltip);
+    $(document).keyup(hideTooltip);
+    $(document).resize(hideTooltip);
+  });
   $(document).on('contextmenu', '.matrix', function(e) {
     e.preventDefault();
     var self = $(this);
@@ -238,7 +242,7 @@ function loadMatricesDOM() {
       if(/\w/.test($(this).val() ) == false) {
           anyEmpty = true;
       }
-    })
+    });
     var resizeMatrix = function(){
       var arr = []; //populate the length of children into this array.
       self.children('.row').map(function (i) {
@@ -249,12 +253,12 @@ function loadMatricesDOM() {
         self.find('.cell').css({
           'width': (250/self.children('.row').length),
           'height': (250/self.children('.row').length)
-        })
+        });
       }else{
         self.find('.cell').css({
           'width': (250/maxValue),
           'height': (250/maxValue)
-        })
+        });
       }
     }
     var loadMatrix = function(){
@@ -315,6 +319,7 @@ function loadMatricesDOM() {
           copied[i] = el.join(" ");
         });
         copied = copied.join('\n');
+        localStorage.setItem("dataClipCopy", JSON.stringify(copied));
         $('.toCopy').remove();
         var toCopy = $('<textarea class="toCopy" value=""></textarea>');
         toCopy.appendTo($('body'));
@@ -336,15 +341,13 @@ function loadMatricesDOM() {
       }
     };
     var paste = function(){
+      copied = JSON.parse(localStorage.getItem("dataClipCopy"));
       copied = copied.split(/\n/);
       copied.forEach( function(el, i) {
         copied[i] = el.split(" ");
       });
-      self.children('.row').each(function(ind) {
-        $(this).children('.cell').each(function(index) {
-          $(this).val(copied[ind][index])
-        });
-      });
+      createMatrixElement(copied, self.index('.matrix'));
+      resizeMatrices();
     }
     var nulled = function(){
       self.children('.row').each(function(ind) {
@@ -368,15 +371,11 @@ function loadMatricesDOM() {
       var cell;
       matrix['matrix' + self.index('.matrix')][0].forEach(function(element, index){
         transposed[index] = [];
-        row = $('<div class="row row'+index+'"></div>');
-        row.appendTo(self);
         matrix['matrix' + self.index('.matrix')].forEach(function(el, i){
-          cell = $('<input type="text" class="cell" >');
-          cell.appendTo(row)
           transposed[index][i] = matrix['matrix' + self.index('.matrix')][i][index];
-          cell.val(transposed[index][i]);
         });
       })
+      createMatrixElement(transposed, self.index('.matrix'));
       resizeMatrix();
     }
     var id = function(){
@@ -412,19 +411,6 @@ function loadMatricesDOM() {
     onContextMenu(matrixMenu, $(this));
   })
 
-  var loadMatrices = function(){
-    matrix.matrix0 = [];
-    matrix.matrix1 = [];
-    $('.matrix').each(function(i) {
-      $(this).children('.row').each(function(ind) {
-        matrix['matrix' + i][ind] = [];
-        $(this).children('.cell').each(function(index) {
-          matrix['matrix' + i][ind][index] = this.value;
-        });
-      });
-    });
-  }
-
   // function calculate matrix result
   $('.solve').click(function() {
     var returned; // value returned in text to make a matrix
@@ -436,7 +422,22 @@ function loadMatricesDOM() {
           matrixRender += "<span>" + matrixResult[i][index] + "</span>";
         })
         matrixRender += "<br>";
-      })
+      });
+      var fontSize = Math.max(matrix.matrix0.length, matrix.matrix0[0].length);
+      var size = 80;
+      if(fontSize < 10){
+        fontSize = 12;
+        size = 80;
+      }else if(fontSize >= 10 && fontSize < 20){
+        fontSize = 11.5;
+        size = 60;
+      }else if(fontSize >= 20 && fontSize < 30){
+        fontSize = 11;
+        size = 40;
+      }else if(fontSize >= 30){
+        fontSize = 10.5;
+        size = 30;
+      }
       $('.result').html('<div class="equation"></div>');
       $('.result .equation').prepend('<span>A ' + $('.operator option:selected').html() + ' B</span> <br>');
       $('.result').append('<div class="resultMatrix"></div><br>');
@@ -444,7 +445,13 @@ function loadMatricesDOM() {
       .append(matrixRender)
       .append('<div class="brackets-after"></div>')
       .fadeIn(300, function(){
-        $('.result, .result .resultMatrix').css('display', 'inline-block'),
+        $('.result, .result .resultMatrix').css('display', 'inline-block');
+        $('.result .resultMatrix span').css({
+          'font-size': fontSize+"pt",
+          'height': size,
+          'width': size,
+          'line-height': size+"px"
+        });
         $('body, html').animate({
           scrollTop: $('.result').offset().top
         }, 300)
@@ -483,6 +490,10 @@ function loadMatricesDOM() {
         $('.result, .result .resultMatrix').css('display', 'inline-block'),
         $('.result .equation').html('');
         $('.result .resultMatrix').html('<img src="Images/loading.gif" style="width: 40px; height: 40px" align="center">');
+        setTimeout(function(){
+          $('.result .equation').html('Parece que a operação falhou. Clique no novamente botão CALCULAR. Se o problema persistir recarregue a página.');
+          $('.result .resultMatrix').html('');
+        }, 10000)
         var matrixA = matrix.matrix0;
         var matrixB = matrix.matrix1;
         $.post('/matriz', {
@@ -498,6 +509,7 @@ function loadMatricesDOM() {
       }
     }
   })
+  // verify and count thee visits length
   if(localStorage.getItem("visitCount")){
     if(localStorage.getItem("visitCount") >= 1){
       $('.welcome').css('visibility', 'hidden');

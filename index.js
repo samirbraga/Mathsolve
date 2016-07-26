@@ -23,10 +23,11 @@ var math = require('./solutions/matrix/allsolutions.js');
 var mathjs = require('mathjs');
 // matrix fill page content
 
-app.get('/:id', function (req, res) {
-	if(req.params.id != "fff"){
-		res.render('layout.html');
-	}
+app.get('/matriz', function (req, res) {
+	res.render('layout.html');
+});
+app.get('/dashboard', function (req, res) {
+	res.render('dashboard.html');
 });
 app.get('/', function (req, res) {
 	res.render('welcome.html');

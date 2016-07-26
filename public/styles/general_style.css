@@ -29,6 +29,24 @@ a:hover{
 li{
   list-style: none;
 }
+
+.defaultButton{
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border: 3px solid #3c948b;
+  color: #3c948b;
+  font-size: 20pt;
+}
+.defaultButton:hover{
+  background: #3c948b;
+  color: #ffffff;
+}
+.defaultButton:hover select{
+  background: #ffffff;
+  color: #3c948b;
+}
+
 .adsense{
   width: 80%;
   max-width: 1200px;

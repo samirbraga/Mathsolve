@@ -155,16 +155,19 @@ function clearSelection() {
 }
 
 // tooltip
-$.fn.tooltip = function(){
+$.fn.tooltip = function(title){
   var el = $(this);
   var tooltip = $('<div class="mt-tooltip"></div>')
+  var arrow = $('<div class="mt-tooltip-arrow"></div>')
   var count;
   var position = el.data('title-position') || "center";
   var posStyle = {};
   el.mouseenter(function(){
     count = setTimeout(function(){
-      tooltip.appendTo('body')
-      .css({
+      tooltip.html('');
+      tooltip.appendTo('body');
+      //arrow.appendTo(tooltip);
+      tooltip.css({
         position: "absolute",
         padding: "8px",
         fontSize: "10pt",
@@ -173,36 +176,50 @@ $.fn.tooltip = function(){
         display: "none",
         zIndex: 90
       })
-      .html(el.data('title'));
+      .append(el.data('title') || title);
+
+   /*   arrow.css({
+        'width': 0,
+        'height': 0,
+        'border-style': 'solid',
+        'border-width': '5px 5px 0 5px',
+        'border-color': 'rgba(0,0,0,0.7) transparent transparent transparent',
+        'position': 'absolute',
+        'bottom': -5,
+        'left': tooltip.innerWidth()/2 - 5
+      })*/
       switch (position){
         case "right":
           posStyle = {
             left: (el.offset().left + el.outerWidth()) - tooltip.innerWidth(),
             top: (el.offset().top) - tooltip.innerHeight() - 10
-          }
+          };
+          //arrow.css('left', '');
+          //arrow.css('right', el.outerWidth()/2) + 5;
           break;
         case "left":
           posStyle = {
             left: el.offset().left,
             top: (el.offset().top) - tooltip.innerHeight() - 10
-          }
+          };
+          //arrow.css('left', 15);
           break;
         case "center":
           posStyle = {
             left: (el.offset().left + el.outerWidth()/2) - tooltip.innerWidth()/2 ,
             top: (el.offset().top) - tooltip.innerHeight() - 10
-          }
+          };
           break;
       }
       tooltip.css(posStyle)
       .fadeIn('fast');
     }, 350);
-  })
+  });
   function hideTooltip(){
     clearTimeout(count)
     tooltip.fadeOut('fast', function(){
       tooltip.remove();
-    })
+    });
   }
   el.mouseleave(hideTooltip);
   $(document).keyup(hideTooltip);
@@ -233,22 +250,23 @@ $(document).ready(function(){
       right: '5px',
       fontSize: '12pt'
     })
-    .html(value)
+    .html(value);
     obj.stop().mouseenter(function(){
       alt.animate({
         top: '8px'
-      }, 200)
-    })
+      }, 200);
+    });
     obj.stop().mouseleave(function(){
       alt.delay(500).animate({
         top: '-60px'
-      }, 200)
-    })
+      }, 200);
+    });
   });
-  // setTimout important! to elements in include on calc pages
+  // setTimout important! to elements in include on #calc partials
   setTimeout(function(){
     $('[data-title]').each(function(){
       $(this).tooltip();
     });
-  }, 1000) 
+  }, 1000);
+
 })

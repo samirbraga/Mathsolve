@@ -1,4 +1,4 @@
-app.controller("mathsolveCtrl", function ($scope, $http){
+app.controller("mathsolveCtrl", function ($scope, $http, $location){
 	$scope.icons = [
     {src: "matrix.png", name: "Matriz", href: "/matriz", color: "#26645c"},
     {src: "consts.png", name: "Contantes", href: "/contantes", color: "#3a8b83"},
@@ -28,7 +28,7 @@ app.controller("mathsolveCtrl", function ($scope, $http){
 					loadMatricesDOM();
 				},
 				solveOption: true
-		   	}
+		  }
 		   	break;
 		case "/logaritmo":
 			$scope.fill = {
@@ -49,4 +49,5 @@ app.controller("mathsolveCtrl", function ($scope, $http){
 		   	break;
 
 	}
+	console.log($location.path());
 })
