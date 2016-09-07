@@ -2,7 +2,7 @@
 <html lang="pt-br" ng-app="mathsolve" ng-controller="mathsolveCtrl">
 <head>
   <meta charset="utf-8" />
-  <title>Dashbord - MathSolve</title>
+  <title>Dashboard - MathSolve</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <link rel="shortcut icon" href="Images/favicos/{{fill.title | lowercase}}.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,9 +22,33 @@
   <script type="text/javascript" src="scripts/controllers/generalCtrl.js"></script>
   <script type="text/javascript" src="scripts/inner-scripts/layout-responsive.js"></script>
   <script type="text/javascript" src="scripts/inner-scripts/general.js"></script>
-  <link rel="stylesheet" type="text/css" href="styles/layout_style.css">
   <link rel="stylesheet" type="text/css" href="styles/general_style.css">
   <link rel="stylesheet" type="text/css" href="styles/dashboard_style.css">
+ <script type="text/javascript">
+  $(document).ready(function(){
+    $('.pageIntro').mouseenter(function(){
+      $(this).css('background-image', "url('Images/gifs-presentation/"+$(this).data('gif-name')+"')")
+    })
+    $('.pageIntro').mouseleave(function(){
+      $(this).css('background-image', "url('Images/gifs-presentation/"+$(this).data('gif-name').substring(0, $(this).data('gif-name').length-4)+"Static.jpg')")
+    })
+    $('.likePage').click(function(){
+      clearInterval(pass);
+      var xpos = 0;
+      var self = $(this);
+      var count = 0;
+      var pass = setInterval(function(){
+        if(count < 9){
+          self.children('.likePage-button').css('background-position', -xpos + "px 0");
+          xpos+=26.576;
+        }else{
+          clearInterval(pass);
+        }
+        ++count;
+      }, 50)
+    })
+  })
+  </script> 
 </head>
 <body>
   <div class="welcome" >
@@ -46,7 +70,23 @@
   </div>
   <div ng-include="'views/default_topbar.html'" include-replace></div>
   <div class="pageContent">
-    <div class="pageIntro" ng-repeat="page in icons"></div>
+    <h1>Assuntos do Mathers</h1>
+    <div class="pageIntro shadow" ng-repeat="page in icons" ng-style="{'background-image': 'url(\'Images/gifs-presentation/matrixStatic.jpg\')'}" data-gif-name="matrix.gif" >
+      <div class="blend" >
+        <div class="likePage" >
+          <span>{{page.likeCount}}</span>
+          <span class="likePage-button" ></span>
+        </div>
+      </div>
+      <a href="{{page.href}}">
+        <div class="page-footer">
+          <div>
+            <img ng-src="Images/icons/{{page.src}}">
+            <span>{{page.name}}</span>
+          </div>
+        </div>
+      </a>
+    </div>
   </div>
   <div class="adsense"></div>
   <div ng-include="'views/footer.html'" include-replace></div>

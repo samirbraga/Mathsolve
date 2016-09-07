@@ -23,10 +23,16 @@ var math = require('./solutions/matrix/allsolutions.js');
 var mathjs = require('mathjs');
 // matrix fill page content
 
-app.get('/matriz', function (req, res) {
-	res.render('layout.html');
+var pagesRoutes = ["matriz", "logaritmo"];
+
+app.get('/solucoes/:id', function (req, res) {
+	if(pagesRoutes.indexOf(req.params.id) == -1){
+		res.redirect('/solucoes');
+	}else{
+		res.render('layout.html');
+	}
 });
-app.get('/dashboard', function (req, res) {
+app.get('/solucoes', function (req, res) {
 	res.render('dashboard.html');
 });
 app.get('/', function (req, res) {

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <title ng-bind="fill.title + ' - MathSolve'"></title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <link rel="shortcut icon" href="Images/favicos/{{fill.title | lowercase}}.ico" type="image/x-icon" />
+  <link rel="shortcut icon" ng-href="../Images/favicos/{{fill.title | lowercase}}.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="keywords" content="matemática, online, math, matriz, matrizes, matrix, matrices, mathematic, resolver, calculadora, calc online, determinante, determinant, traço, trace, matriz inversa, matriz transposta, transposed matrix, solve matrix online, resolver matriz online, mathsolve, samir braga, calcular, calcular matriz">   
   <meta name="description" content="Resolva matrizes online com o MathSolve, calcule determinante, execute operações de soma, subtração, multplicação e matriz inversa, com um sistema simples, de fácil manusemaneto, um tutorial e com demonstração de regras! Tudo gratuito!">
@@ -12,16 +12,17 @@
   <meta name="author" content="Samir Braga">
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow">
-  <script type="text/javascript" src="libraries/jquery.min.js"></script>
-  <script type="text/javascript" src="libraries/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="libraries/angular.min.js"></script>
-  <script type="text/javascript" src="libraries/angular-route.min.js"></script>
-  <script type="text/javascript" src="scripts/app.js"></script>
-  <script type="text/javascript" src="scripts/directives/replaceInclude.js"></script>
-  <script type="text/javascript" src="scripts/filters/bind-html.js"></script>
-  <script type="text/javascript" src="scripts/controllers/generalCtrl.js"></script>
-  <script type="text/javascript" src="scripts/inner-scripts/layout-responsive.js"></script>
-  <script type="text/javascript" src="scripts/inner-scripts/general.js"></script>
+  <script type="text/javascript" src="../libraries/jquery.min.js"></script>
+  <script type="text/javascript" src="../libraries/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="../libraries/angular.min.js"></script>
+  <script type="text/javascript" src="../libraries/angular-route.min.js"></script>
+  <script type="text/javascript" src="../scripts/app.js"></script>
+  <script type="text/javascript" src="../scripts/directives/replaceInclude.js"></script>
+  <script type="text/javascript" src="../scripts/filters/bind-html.js"></script>
+  <script type="text/javascript" src="../scripts/controllers/generalCtrl.js"></script>
+  <script type="text/javascript" src="../scripts/configs/routerConfig.js"></script>
+  <script type="text/javascript" src="../scripts/inner-scripts/layout-responsive.js"></script>
+  <script type="text/javascript" src="../scripts/inner-scripts/general.js"></script>
   <link rel="stylesheet" type="text/css" href="../styles/layout_style.css">
   <link rel="stylesheet" type="text/css" href="../styles/general_style.css">
 </head>
@@ -43,33 +44,33 @@
       <p>Está perdido? Veja um <a href='#'>mapa completo das nossas ferramentas</a> e sinta-se a vontade para explorá-las.</p>
     </div>
   </div>
-  <div ng-include="'views/default_topbar.html'" include-replace></div>
+  <div ng-include="'../views/default_topbar.html'" include-replace></div>
   <div class="pageContent">
-    <div class="title">
-      <h1><span ng-bind="fill.title"></span> <br>  
-        <div class="title-line1"></div>
-        <div class="title-line2"></div>
-      </h1>
-    </div>
-    <div class="adsense"></div>
-    <br>
-    <div class="description">
-      <ul>
-        <li ng-repeat="instruction in fill.instructions" ng-bind-html="instruction.text | unsafe">
-        </li>
-      </ul>
-    </div>
-    <div ng-include="fill.includeSrc" onload="'fill.loadScriptToDOM()'" include-replace></div>
-    <div ng-show="fill.solveOption == true" class="solve">
-      <input type="button" value="CALCULAR">
-    </div>
-    <div class="result">
-      <div class="equation"></div>
-      <div class="resultMatrix"></div>
-    </div>
-    <hr style="height: 2px; background: #3c948b; width: 90%;  margin: 50px auto 0 auto">
+  <div class="title">
+    <h1><span ng-bind="fill.title"></span> <br>  
+      <div class="title-line1"></div>
+      <div class="title-line2"></div>
+    </h1>
   </div>
   <div class="adsense"></div>
-  <div ng-include="'views/footer.html'" include-replace></div>
+  <br>
+  <div class="description">
+    <ul>
+      <li ng-repeat="instruction in fill.instructions" ng-bind-html="instruction.text | unsafe">
+      </li>
+    </ul>
+  </div>
+  <div ng-include="fill.includeSrc" onload="'fill.loadScriptToDOM()'"></div>
+  <div class="solve">
+    <input type="button" value="CALCULAR">
+  </div>
+  <div class="result">
+    <div class="equation"></div>
+    <div class="resultMatrix"></div>
+  </div>
+  <hr style="height: 2px; background: #3c948b; width: 90%;  margin: 50px auto 0 auto">
+</div>
+  <div class="adsense"></div>
+  <div ng-include="'../views/footer.html'" include-replace></div>
 </body>
 </html>

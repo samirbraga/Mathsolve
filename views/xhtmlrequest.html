@@ -1,0 +1,40 @@
+<html>
+<head>
+  <title></title>
+  <script type="text/javascript">
+  window.onload = function(){
+
+    function loadOFXDoc() {
+      var reader = new XMLHttpRequest();
+      reader.open("GET", "text.ofx", true);
+      reader.send();
+      reader.onreadystatechange = function() {
+        if (reader.readyState == 4 && reader.status == 200) {
+          showContent(reader);
+        }
+      };
+    }
+    function showContent(xml) {
+      var i;
+      var ofxDoc = JSON.stringify(xml.responseXML);
+      console.log(ofxDoc)
+      /* var table="<tr><th>Local</th><th>Valor</th></tr>";
+      var x = ofxDoc.querySelectorAll("SIGNONMSGSRSV1");
+      for (i = 0; i <x.length; i++) {
+        table += "<tr><td>" +
+        x[i].getElementsByTagName("MEMO")[0].childNodes[0].nodeValue +
+        "</td><td>" +
+        x[i].getElementsByTagName("TRNAMT")[0].childNodes[0].nodeValue +
+        "</td></tr>";
+      }
+      document.getElementById("demo").innerHTML = table;*/
+    }
+
+    loadOFXDoc();
+  }
+  </script>
+</head>
+<body>
+  <table id="demo" ></table>
+</body>
+</html>

@@ -12,8 +12,8 @@ body {
   background: url('../Images/border-bottom-bg.png') #fff repeat-x;
   background-size: auto 8px;
   background-position: 0 bottom; 
-  -webkit-box-shadow: 2px 0 2px 1px rgba(0,0,0,0.2);
-  -moz-box-shadow: 0 0 2px 1px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 5px -2px 5px 2px rgba(0,0,0,0.5);
+  -moz-box-shadow: 5px -2px 5px 2px rgba(0,0,0,0.5);
   box-shadow: 5px -2px 5px 2px rgba(0,0,0,0.5);
   z-index: 100;
 }

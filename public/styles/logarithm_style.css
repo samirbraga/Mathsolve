@@ -1,0 +1,15 @@
+.logarithms{
+	margin: 20px 10px;
+}
+
+.logarithms .logarithms-align{
+	padding: 20px 10px;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: center;
+}
+
+.logarithms .logarithms-align .logarithm{
+	font-family: "Cambria Math", sans-serif;
+	font-size: 50pt;
+}

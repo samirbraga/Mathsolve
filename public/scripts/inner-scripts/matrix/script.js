@@ -47,25 +47,25 @@ function loadMatricesDOM() {
       matrixElA.find('.cell').css({
         'width': (maxSize/matrixElA.children('.row').length),
         'height': (maxSize/matrixElA.children('.row').length)
-      })
+      });
     }else{
       matrixElA.find('.cell').css({
         'width': (maxSize/maxValue0),
         'height': (maxSize/maxValue0)
-      })
+      });
     }
     if(matrixElB.find('.row').length > maxValue1){
       matrixElB.find('.cell').css({
         'width': (maxSize/matrixElB.children('.row').length),
         'height': (maxSize/matrixElB.children('.row').length)
-      })
+      });
     }else{
       matrixElB.find('.cell').css({
         'width': (maxSize/maxValue1),
         'height': (maxSize/maxValue1)
-      })
+      });
     }
-  }
+  };
 
   // Create matrix element by any bidimensional array
   var createMatrixElement = function(array, ind){
@@ -83,7 +83,7 @@ function loadMatricesDOM() {
     })
     $('.matrix').eq(ind).append(_rows);
     insertBrackets();
-  }
+  };
 
 
   var invertMatricesOrder = function(){
@@ -97,7 +97,7 @@ function loadMatricesDOM() {
     createMatrixElement(matrixB, 1);
     insertBrackets();
     resizeMatrices();
-  }
+  };
   $('.invertMatricesOrder').click(invertMatricesOrder);
 
 
@@ -114,12 +114,12 @@ function loadMatricesDOM() {
         if(i == indexCell){
           $(this).addClass('showed');
         }
-      })
-    })
-  })
+      });
+    });
+  });
   $(document).on('mouseleave', '.cell', function(e) {
     $('.cell').removeClass('showed');
-  })
+  });
   $(document).on('keyup', '.cell', function(e) {
     var indexMatrix = $(this).closest('.matrix').index('.matrix'); // returns the index of matrix
     var indexRow = $(this).parent().index('.matrix:eq('+indexMatrix+') .row'); // return the index of row
@@ -189,10 +189,9 @@ function loadMatricesDOM() {
     }
     // Change input text size by its length;
     resizeMatrices();
-  })
+  });
 
   var copied = [];
-
 
   /*
   $(document).on('dblclick', '.cell', function(e) {
@@ -224,10 +223,10 @@ function loadMatricesDOM() {
       .fadeIn('fast');
     }, 350);
     function hideTooltip(){
-      clearTimeout(count)
+      clearTimeout(count);
       tooltip.fadeOut('fast', function(){
         tooltip.remove();
-      })
+      });
     }
     self.mouseleave(hideTooltip);
     $(document).keyup(hideTooltip);
@@ -236,7 +235,6 @@ function loadMatricesDOM() {
   $(document).on('contextmenu', '.matrix', function(e) {
     e.preventDefault();
     var self = $(this);
-
     var anyEmpty = false;
     self.find('.cell').each(function(i){
       if(/\w/.test($(this).val() ) == false) {
@@ -259,8 +257,8 @@ function loadMatricesDOM() {
           'width': (250/maxValue),
           'height': (250/maxValue)
         });
-      }
-    }
+      };
+    };
     var loadMatrix = function(){
       matrix['matrix' + self.index('.matrix')] = [];
       self.children('.row').each(function(ind) {
@@ -269,7 +267,7 @@ function loadMatricesDOM() {
           matrix['matrix' + self.index('.matrix')][ind][index] = this.value.replace(/ /g, '');
         });
       });
-    } 
+    };
     var det = function() {
       loadMatrices();
       var result;
@@ -291,9 +289,9 @@ function loadMatricesDOM() {
           });
         }else{
           alertInfo('Para calcular o <i>Determinante</i> de uma matriz, esta deve ser quadrada.');
-        }
-      }
-    }
+        };
+      };
+    };
     var trace = function(){
       if(anyEmpty){
         alertInfo('Preencha todas as células corretamente!');
@@ -307,8 +305,8 @@ function loadMatricesDOM() {
           });
         });
         alertInfo('O <i>Traço</i> da respectiva matriz é: <b>' +result+'</b>');
-      }
-    }
+      };
+    };
     var copy = function(){
       if(anyEmpty){
         alertInfo('Preencha todas as células corretamente!');
@@ -326,7 +324,7 @@ function loadMatricesDOM() {
         toCopy.css({
           position: 'fixed',
           left: '-100%'
-        })
+        });
         clearSelection();
         toCopy.val(copied);
         $(this).click(function(){
@@ -337,8 +335,8 @@ function loadMatricesDOM() {
           catch (err) {
             alert('please press Ctrl/Cmd+C to copy');
           }
-        })
-      }
+        });
+      };
     };
     var paste = function(){
       copied = JSON.parse(localStorage.getItem("dataClipCopy"));
@@ -348,21 +346,21 @@ function loadMatricesDOM() {
       });
       createMatrixElement(copied, self.index('.matrix'));
       resizeMatrices();
-    }
+    };
     var nulled = function(){
       self.children('.row').each(function(ind) {
         $(this).children('.cell').each(function(index) {
           $(this).val('0')
         });
       });
-    }
+    };
     var random = function(){
       self.children('.row').each(function(ind) {
         $(this).children('.cell').each(function(index) {
           $(this).val(Math.floor(Math.random()*10));
         });
       });
-    }
+    };
     var transpose = function(){
       var transposed = [];
       loadMatrix();
@@ -374,10 +372,10 @@ function loadMatricesDOM() {
         matrix['matrix' + self.index('.matrix')].forEach(function(el, i){
           transposed[index][i] = matrix['matrix' + self.index('.matrix')][i][index];
         });
-      })
+      });
       createMatrixElement(transposed, self.index('.matrix'));
       resizeMatrix();
-    }
+    };
     var id = function(){
       if(self.children('.row').length == self.children('.row').eq(0).children('.cell').length){
         self.children('.row').each(function(ind) {
@@ -390,10 +388,35 @@ function loadMatricesDOM() {
         });
       }else{
         alertInfo('Para que uma matriz seja convertida em <i>identidade</i> esta deve ser quadrada.');
-      }
-    }
+      };
+    };
     var remove = function(){
       self.find('.selected').remove();
+    };
+    var resetMatrix = function(){
+      createMatrixElement([[0]], self.index('.matrix'));
+    };
+    var topTriangule = function(){
+      var count = 0;
+      self.children('.row').each(function(ind) {
+        $(this).children('.cell').each(function(index) {
+          if(index < count && ind == count){
+            $(this).val('0');
+          }
+        });
+        count++;
+      });
+    }
+    var bottomTriangule = function(){
+      var count = 0;
+      self.children('.row').each(function(ind) {
+        $(this).children('.cell').each(function(index) {
+          if(index > count && ind == count){
+            $(this).val('0');
+          }
+        });
+        count++;
+      }); 
     }
     var matrixMenu = [
       {type: "divider", title: "Calcular", doubt: false, classes: "calc"}, 
@@ -403,10 +426,17 @@ function loadMatricesDOM() {
       {type: "item", title: "Matriz nula", doubt: false, classes: "null", functions: nulled}, 
       {type: "item", title: "Matriz identidade", doubt: false, classes: "id", functions: id}, 
       {type: "item", title: "Matriz transposta", doubt: false, classes: "transpose", functions: transpose}, 
+      {type: "item", title: "Matriz triangular", doubt: false, classes: "triangule", 
+        subDivide: [
+          {type: "item", title: "Superior", doubt: false, classes: "top", functions: topTriangule}, 
+          {type: "item", title: "Inferior", doubt: false, classes: "bottom", functions: bottomTriangule}
+        ]
+      }, 
       {type: "item", title: "Matriz aleatória", doubt: false, classes: "random", functions: random}, 
       {type: "boolean", title: "Copiar", doubt: false, classes: "copy", showed: true, functions: copy}, 
-      {type: "boolean", title: "Colar", doubt: false, classes: "paste", showed: copied.length > 0, functions: paste}, 
-      {type: "boolean", title: "Remover", doubt: false, classes: "remove", showed: $('.selected').length > 0, functions: function(){}}, 
+      {type: "boolean", title: "Colar", doubt: false, classes: "paste", showed: (localStorage.getItem('dataClipCopy') != undefined), functions: paste}, 
+      {type: "boolean", title: "Remover", doubt: false, classes: "remove", showed: ($('.selected').length > 0), functions: function(){}}, 
+      {type: "boolean", title: "Reset", doubt: false, classes: "reset", showed: self.children('.row').length > 1 || self.children('.row').children('.cell').length > 1, functions: resetMatrix}, 
     ]
     onContextMenu(matrixMenu, $(this));
   })
@@ -463,7 +493,7 @@ function loadMatricesDOM() {
       if(!(/\w/.test($(this).val()))){
           anyEmpty = true;
       }
-    })
+    });
     if (anyEmpty){
       alertInfo('Preencha todas as células corretamente!');
     } else {
@@ -489,8 +519,8 @@ function loadMatricesDOM() {
         loadMatrices();
         $('.result, .result .resultMatrix').css('display', 'inline-block'),
         $('.result .equation').html('');
-        $('.result .resultMatrix').html('<img src="Images/loading.gif" style="width: 40px; height: 40px" align="center">');
-        setTimeout(function(){
+        $('.result .resultMatrix').html('<img src="../Images/loading.gif" style="width: 40px; height: 40px" align="center">');
+        var countError = setTimeout(function(){
           $('.result .equation').html('Parece que a operação falhou. Clique no novamente botão CALCULAR. Se o problema persistir recarregue a página.');
           $('.result .resultMatrix').html('');
         }, 10000)
@@ -503,12 +533,14 @@ function loadMatricesDOM() {
         function (data){
           $.get('/matriz/'+$('.operator').val(),
           function(data){
+            clearTimeout(countError);
             renderMatrix(JSON.parse(data));
           });
         });
       }
     }
-  })
+  });
+
   // verify and count thee visits length
   if(localStorage.getItem("visitCount")){
     if(localStorage.getItem("visitCount") >= 1){
@@ -527,8 +559,9 @@ function loadMatricesDOM() {
   $('.welcome .welcome-content .tutorial').click(function(){
     $('.welcome').fadeOut(300, tutorial);
   });
+
+  // Add Matrix markers to this seems a brackets -> [ ]
   function insertBrackets(){
-    // Add Matrix markers to this seems a brackets -> [ ]
     $('.matrix').prepend('<div class="brackets-before"></div>');
     $('.matrix').append('<div class="brackets-after"></div>');
   }
@@ -536,4 +569,3 @@ function loadMatricesDOM() {
     $('#result').prepend('<div class="brackets-before"></div>');
     $('#result').append('<div class="brackets-after"></div>');
 };
-
